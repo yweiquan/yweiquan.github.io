@@ -1,0 +1,1109 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文从 Android/Java 的角度学习 iOS 开发，篇幅较长，都是入门必须要了解的 iOS 基础知识。不包含任何高级开发知识，不包含任何高级开发知识，不包含任何高级开发知识。
+Objective-C 基础语法Objective-C 是苹果应用软件（包括苹果电脑上的 Mac OS App 和移动设备上的 iOS App）的开发语言。它是一种面向对象的编程语言。Objective-C 扩展了A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS从入门到放弃(误)">
+<meta property="og:url" content="http://willyan.me/2016/08/10/ios-basic/index.html">
+<meta property="og:site_name" content="Will's Central Perk">
+<meta property="og:description" content="本文从 Android/Java 的角度学习 iOS 开发，篇幅较长，都是入门必须要了解的 iOS 基础知识。不包含任何高级开发知识，不包含任何高级开发知识，不包含任何高级开发知识。
+Objective-C 基础语法Objective-C 是苹果应用软件（包括苹果电脑上的 Mac OS App 和移动设备上的 iOS App）的开发语言。它是一种面向对象的编程语言。Objective-C 扩展了A">
+<meta property="og:updated_time" content="2017-02-10T03:47:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS从入门到放弃(误)">
+<meta name="twitter:description" content="本文从 Android/Java 的角度学习 iOS 开发，篇幅较长，都是入门必须要了解的 iOS 基础知识。不包含任何高级开发知识，不包含任何高级开发知识，不包含任何高级开发知识。
+Objective-C 基础语法Objective-C 是苹果应用软件（包括苹果电脑上的 Mac OS App 和移动设备上的 iOS App）的开发语言。它是一种面向对象的编程语言。Objective-C 扩展了A">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://willyan.me/2016/08/10/ios-basic/"/>
+
+  <title> iOS从入门到放弃(误) | Will's Central Perk </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Will's Central Perk</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS从入门到放弃(误)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-10T14:38:56+08:00" content="2016-08-10">
+              2016-08-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/10/ios-basic/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/ios-basic/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文从 Android/Java 的角度学习 iOS 开发，篇幅较长，都是入门必须要了解的 iOS 基础知识。不包含任何高级开发知识，不包含任何高级开发知识，不包含任何高级开发知识。</p>
+<h1 id="Objective-C-基础语法"><a href="#Objective-C-基础语法" class="headerlink" title="Objective-C 基础语法"></a>Objective-C 基础语法</h1><p>Objective-C 是苹果应用软件（包括苹果电脑上的 Mac OS App 和移动设备上的 iOS App）的开发语言。它是一种面向对象的编程语言。Objective-C 扩展了ANSI C，是C的超集，也就是说：</p>
+<ul>
+<li>任何C源程序，不经修改，即可通过 Objective-C 编译器成功编译</li>
+<li>Objective-C 源程序中可以直接使用任何C语言代码</li>
+</ul>
+<a id="more"></a>
+<h2 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h2><p>基础的 Xcode 安装在此不再赘述，安装好之后，打开 Xcode，创建一个 HelloWorld 项目，我们看一下 main.m 的示例代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//</div><div class="line">//  main.m</div><div class="line">//  HelloWorld</div><div class="line">//</div><div class="line"></div><div class="line">#import &lt;UIKit/UIKit.h&gt;</div><div class="line">#import &quot;AppDelegate.h&quot;</div><div class="line"></div><div class="line">int main(int argc, char * argv[]) &#123;</div><div class="line">	@autoreleasepool &#123;</div><div class="line">		NSLog(@&quot;Hello World!&quot;);</div><div class="line">		return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="应用入口"><a href="#应用入口" class="headerlink" title="应用入口"></a>应用入口</h3><p><strong>main.m 是整个 iOS 应用的入口</strong>，存在于 Supporting Files 文件夹中。</p>
+<p>return 所在的这行代码，将所有的事件、消息全部交给了 UIApplication 来处理，<strong>每个iOS应用都有且只有一个 UIApplication 实例</strong>，它负责应用程序的运行循环。</p>
+<p>AppDelegate 有点类似于 Android 的 Application，提供一些应用程序级别的状态的回调，还可以定义一些全局变量。</p>
+<p>@autoreleasepool，被称为「自动释放池」，这里我们不深究什么是自动释放池，目前只需要知道：<strong>整个 iOS 的应用都是包含在一个自动释放池中的</strong>。</p>
+<h2 id="消息传递（方法调用）"><a href="#消息传递（方法调用）" class="headerlink" title="消息传递（方法调用）"></a>消息传递（方法调用）</h2><p>在Java、C++世界，我们调用一个对象的某方法，在Objective-C里，这称作给类型发送一个消息，这不仅是表述上的不同，他们的技术细节也是不同的。</p>
+<p>Objective-C的面向对象语法源自SmallTalk，消息传递（Message Passing）风格。在源码风格方面，这是它与C Family语言（包括C/C++、Java、PHP）差别最大的地方。</p>
+<p>在Java里，对象和方法关系非常严格，一个方法必须属于一个类/对象，否则编译是要报错的。而在Objective-C里，类型和消息的关系比较松散，消息处理到运行时（runtime）才会动态决定，给类型发送一个它无法处理的消息，也只会抛出一个异常，而不会挂掉。</p>
+<p>在代码里调用没定义的方法（这是Java的习惯说法，ObjC的叫法是，给对象传递它无法处理的消息），Xcode会警告，但编译能成功。</p>
+<h3 id="不带参数"><a href="#不带参数" class="headerlink" title="不带参数"></a>不带参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[obj method];</div></pre></td></tr></table></figure>
+<p>对应的Java版：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">obj.method();</div></pre></td></tr></table></figure>
+<h3 id="带一个参数"><a href="#带一个参数" class="headerlink" title="带一个参数"></a>带一个参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[obj add:1];</div></pre></td></tr></table></figure>
+<p>对应的Java版：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">obj.add(1);</div></pre></td></tr></table></figure>
+<h3 id="带多个参数"><a href="#带多个参数" class="headerlink" title="带多个参数"></a>带多个参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(void) setColorToRed: (float)red Green: (float)green Blue:(float)blue &#123;...&#125; //定义方法</div><div class="line"></div><div class="line">[myObj setColorToRed: 1.0 Green: 0.8 Blue: 0.2]; //传递消息</div></pre></td></tr></table></figure>
+<p>多参数的方法名是分裂的，用空格分开，调用时在方法名中夹带参数，用引号衔接，整体用中括号包裹。</p>
+<p>对应的Java版：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public void setColorToRedGreenBlue(float red, float green, float blue) &#123;...&#125; //定义方法</div><div class="line"></div><div class="line">myObj.setColorToRedGreenBlue(1.0, 0.8, 0.2); //调用方法</div></pre></td></tr></table></figure>
+<p>这对于 C Family 程序员来说，简直是反人类。</p>
+<h3 id="消息嵌套"><a href="#消息嵌套" class="headerlink" title="消息嵌套"></a>消息嵌套</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UINavigationBar *bar = [[[UINavigationBar alloc] init] autorelease];</div></pre></td></tr></table></figure>
+<p>对应的Java版:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UINavigationBar bar = UINavigationBar.alloc().init().autorelease();</div></pre></td></tr></table></figure>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>开始时说到 Objective－C 是一个C语言的超集，所以所有C语言支持的基本数据类型，ObjC同样支持，并且ObjC还支持一些其它的常用数据类型。</p>
+<h3 id="int-与-NSInteger"><a href="#int-与-NSInteger" class="headerlink" title="int 与 NSInteger"></a>int 与 NSInteger</h3><p>C语言中的int，在ObjC中同样支持，但不建议你用int，而推荐使用Cocoa框架中的NSInteger。看一下NSInteger定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#if __LP64__ || (TARGET_OS_EMBEDDED &amp;&amp; !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64</div><div class="line">typedef long NSInteger;</div><div class="line">typedef unsigned long NSUInteger;</div><div class="line">#else</div><div class="line">typedef int NSInteger;</div><div class="line">typedef unsigned int NSUInteger;</div><div class="line">#endif</div></pre></td></tr></table></figure>
+<p>可以看出，上面官方框架的代码主要是为了同时匹配64位和32位处理器，64位内核中NSInteger为long型，而在32位内核中为int型，所以使用 NSInteger，就不用特意去考虑内核位宽问题。</p>
+<h3 id="bool-与-BOOL"><a href="#bool-与-BOOL" class="headerlink" title="bool 与 BOOL"></a>bool 与 BOOL</h3><p>C语言标准中没有布尔型变量，C++中的bool类型，为true和false，这在许多其他的类C语言中都是一样的，例如java、C#、php等，但在ObjC中，你可以使用bool类型，但更建议使用ObjC专用的BOOL类型，这个基本布尔型的值为YES和NO。</p>
+<h3 id="float-与-CGFloat"><a href="#float-与-CGFloat" class="headerlink" title="float 与 CGFloat"></a>float 与 CGFloat</h3><p>CGFloat 不是 Foundation 框架的基础变量，而是定义在UIKit框架中，CG代表CoreGraphic（核心绘图框架）。从定义来看，float和CGFloat的区别也是根据系统内核位宽不同，类型不同。64位中CGFloat是double类型，32位中则是float类型。所以也是推荐使用 CGFloat。</p>
+<h3 id="NSString"><a href="#NSString" class="headerlink" title="NSString"></a>NSString</h3><p>char 和 string 类型在ObjC中同样可用，但是基本也可以不用。NSString 基本能胜任现代编程语言对于字符串的所有基本处理和更复杂的处理，在实例化时操作起来就好像基本类型一样。由双引号包裹，并在引号前加一个@符号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NSString* textA = @&quot;123&quot;;     </div><div class="line">NSString* textB = textA;</div><div class="line">textA = @&quot;456&quot;;</div><div class="line">NSLog(@&quot;%@&quot;,textA); //输出 456</div><div class="line">NSLog(@&quot;%@&quot;,textB); //输出 123</div></pre></td></tr></table></figure>
+<p>和 Java 类似，对于 NSString 类型来说，等号赋值，实际是__深度拷贝。</p>
+<p>textA＝@”456” 这一步 textA 的指针已经改变，实际操作等同于 textA = [@”456” copy]。<br>textB = textA，实际操作等同于 textB = [textA copy]。</p>
+<blockquote>
+<p>这里的 copy 函数，是NSObject的不可变拷贝方法。</p>
+</blockquote>
+<p>NSString 也可以转数字:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">NSString* number = @&quot;1111113&quot;;</div><div class="line">NSInteger intValue = [number integerValue]; //转整形</div><div class="line">CGFloat   floatValue = [number doubleValue]; //转浮点</div></pre></td></tr></table></figure>
+<h3 id="NSNumber"><a href="#NSNumber" class="headerlink" title="NSNumber"></a>NSNumber</h3><p>NSNumber 与 NSInteger 不同的是，NSNumber不是基本数据类型，而是对象。<br>NSNumber 继承自 NSValue，而 NSValue 继承自NSObject。<br>NSNumber 支持和基本数据类型的互转。</p>
+<p>另外 NSNumber 支持和 NSString 一样的@符号简写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">NSNumber * number = @(123);</div><div class="line">NSNumber * number1 = @(3.1415);</div><div class="line">NSNumber * number2 = @(YES);</div><div class="line"></div><div class="line">NSInteger intValue = [number integerValue];</div><div class="line">CGFloat floatValue = [number1 doubleValue];</div><div class="line">BOOL boolValue = [number2 boolValue];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>是不是发现这些数据类型都有 NS 前缀， 那么 NS 是什么意思？</p>
+<p>NS 是 NeXTSTEP 的简写， NeXTSTEP 是乔布斯在1985年离开苹果电脑后所创立的公司，后来苹果电脑在1997年2月将 NeXT 买下，成为 Mac OS 的基础。所以这些代码就被带进苹果了。</p>
+<p>ObjC 里没有包或者域名空间，所以就靠前缀来区分。</p>
+</blockquote>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><h3 id="NSArray"><a href="#NSArray" class="headerlink" title="NSArray"></a>NSArray</h3><p>ObjC 的数组比C++，Java的数组强大在于，NSArray保存的对象可以是不同的对象。但只能保存对象，int ,char,double等基本数据类型不能直接保存，需要通过转换成对象才能加入数组。</p>
+<ul>
+<li>[arrayWithObjects: …] : 向数组对象初始化赋值。这里可以写任意对象的指针，<strong>结尾必需使用nil标志结束</strong>。</li>
+<li>[array count] : 数组的长度。</li>
+<li>[array objectAtIndex 0] : 传入数组脚标的id 得到数据对象。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//创建一个 NSObject 对象</div><div class="line">NSObject *obj = [[NSObject alloc]init];</div><div class="line">//初始化创建一个数组</div><div class="line">NSArray *array = [NSArray arrayWithObjects:@&quot;a&quot;, obj, @&quot;c&quot;,nil];</div><div class="line">//打印数组长度</div><div class="line">NSLog(@&quot;array Count:%lu&quot;,[array count]);</div><div class="line">//遍历数组</div><div class="line">for (NSObject *object in array) &#123;</div><div class="line">		NSLog(@&quot;数组对象:%@&quot;, object);</div><div class="line">&#125;</div><div class="line">NSLog(@&quot;Index 2:%@&quot;, [array objectAtIndex:2]);</div><div class="line"></div><div class="line">[obj release];</div></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">array Count:3</div><div class="line">数组对象:a</div><div class="line">数组对象:&lt;NSObject: 0x7fe479c14110&gt;</div><div class="line">数组对象:c</div><div class="line">Index 2:c</div></pre></td></tr></table></figure>
+<h3 id="NSMutableArray"><a href="#NSMutableArray" class="headerlink" title="NSMutableArray"></a>NSMutableArray</h3><p>Mutable，可变的，不定的。NSMutableArray 继承自 NSArray，可变对象数组。</p>
+<ul>
+<li>[NSMutableArray arrayWithCapacity:6] : 初始化可变数组对象的长度，如果后面代码继续添加数组超过长度6以后 NSMutableArray 的长度会自动扩充，6是自己可以设置的颗粒度。</li>
+<li>[array addObject:…] : 向可变数组尾部添加数据对象。</li>
+<li>[array addObjectsFromArray:..] : 向可变数组尾部添加一个数组对象。</li>
+<li>[array removeObject:obj inRange:range] : 设置在一个范围内删除数据，如果这个范围内没有删除的这个对象则不会删除任何东西。<ul>
+<li>NSRange range = NSMakeRange(0,3); // 设置一个范围为 0 到 3 之间。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">NSObject *obj = [[NSObject alloc]init];   </div><div class="line">        </div><div class="line">NSMutableArray *muArray = [NSMutableArray arrayWithCapacity:6];</div><div class="line">[muArray addObject:@&quot;对象1&quot;];</div><div class="line">[muArray addObject:@&quot;对象2&quot;];</div><div class="line">[muArray addObject:@&quot;对象3&quot;];</div><div class="line">[muArray addObject:@&quot;对象4&quot;];</div><div class="line">[muArray insertObject:@&quot;强势插入&quot; atIndex:2];</div><div class="line">[muArray addObject:obj];</div><div class="line">// 遍历数组</div><div class="line">for (NSObject *object in muArray) &#123;</div><div class="line">		NSLog(@&quot;数组对象:%@&quot;, object);</div><div class="line">&#125;    </div><div class="line">[obj release];</div></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">数组对象:对象1</div><div class="line">数组对象:对象2</div><div class="line">数组对象:强势插入</div><div class="line">数组对象:对象3</div><div class="line">数组对象:对象4</div><div class="line">数组对象:&lt;NSObject: 0x109714110&gt;</div></pre></td></tr></table></figure>
+<h3 id="NSDictionary"><a href="#NSDictionary" class="headerlink" title="NSDictionary"></a>NSDictionary</h3><p>类似于Java中的 Map，它可以将数据以 Key-Value 的形式储存起来，取值的时候通过 Key 就可以直接拿到对应的值。不同的是，ObjC 中的同一个词典（这里我们称 Dictionary 为词典）对象中可以保存多个不同类型的数据，不像Java只能保存声明的相同类型的数据。</p>
+<ul>
+<li><p>[NSDictionary dictionaryWithObjectsAndKeys:..] : 使用键值对直接创建词典对象，value在前，key在后，[value,key,value,key,nil]，<strong>结尾必需使用nil标志结束</strong>。</p>
+</li>
+<li><p>[NSDictionary initWithObjectsAndKeys:..] :使用键值对初始化词典对象，<strong>结尾必需使用 nil 标志结束</strong>。</p>
+</li>
+<li><p>[dictionary count] : 得到词典的长度单位。</p>
+</li>
+<li><p>[dictionary keyEnumerator]: 将词典的所有 Key 储存在 NSEnumerator 中，NSEnumerator 类似于 Java 中的迭代器，使用快速枚举可以遍历词典中所有储存 Key 值。</p>
+</li>
+<li><p>[dictionary objectEnumerator] : 将词典的所有 Value 储存在 NSEnumerator中，可用来遍历 Key 对应储存的 Value 值。</p>
+</li>
+<li><p>[dictionary objectForKey:key] : 通过传入 Key 对象可以拿到当前 Key 对应储存的值。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@&quot;Will&quot;,@&quot;Name&quot;,@&quot;iOS&quot;,@&quot;Platform&quot;, nil];</div><div class="line"></div><div class="line">//得到词典的数量</div><div class="line">int count = [dictionary count];</div><div class="line">NSLog(@&quot;词典的数量为：%d&quot;,count);</div><div class="line"></div><div class="line">//得到词典中所有KEY值</div><div class="line">NSEnumerator * enumeratorKey = [dictionary keyEnumerator];</div><div class="line"></div><div class="line">//快速枚举遍历所有KEY的值</div><div class="line">for (NSObject *object in enumeratorKey) &#123;</div><div class="line">    NSLog(@&quot;遍历KEY的值：%@&quot;,object);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//得到词典中所有Value值</div><div class="line"> NSEnumerator * enumeratorValue = [dictionary objectEnumerator];</div><div class="line"></div><div class="line">//快速枚举遍历所有Value的值</div><div class="line">for (NSObject *object in enumeratorValue) &#123;</div><div class="line">    NSLog(@&quot;遍历Value的值：%@&quot;,object);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//通过KEY找到value</div><div class="line">NSObject *object = [dictionary objectForKey:@&quot;Name&quot;];</div><div class="line"></div><div class="line">if (object != nil) &#123;</div><div class="line">    NSLog(@&quot;通过KEY找到的value是：%@&quot;,object);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">词典的数量为：2</div><div class="line">遍历KEY的值：Name</div><div class="line">遍历KEY的值：Platform</div><div class="line">遍历Value的值：Will </div><div class="line">遍历Value的值：iOS</div><div class="line">通过KEY找到的value是：Will</div></pre></td></tr></table></figure>
+<p>另一种创建词典的方式，不需要以nil结尾。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">NSDictionary *dictionary = @&#123;</div><div class="line">       @&quot;anObject&quot; : someObject,</div><div class="line">    @&quot;helloString&quot; : @&quot;Hello, World!&quot;,</div><div class="line">    @&quot;magicNumber&quot; : @42,</div><div class="line">         @&quot;aValue&quot; : someValue</div><div class="line">&#125;;</div><div class="line"></div><div class="line">id objects[] = &#123; someObject, @&quot;Hello, World!&quot;, @42, someValue &#125;;</div><div class="line">id keys[] = &#123; @&quot;anObject&quot;, @&quot;helloString&quot;, @&quot;magicNumber&quot;, @&quot;aValue&quot; &#125;;</div><div class="line">NSUInteger count = sizeof(objects) / sizeof(id);</div><div class="line">NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects</div><div class="line">                                                       forKeys:keys</div><div class="line">                                                         count:count];</div><div class="line">                                                         </div><div class="line">id value = dictionary[@&quot;helloString&quot;];</div><div class="line"></div><div class="line">for (NSString *key in dictionary) &#123;</div><div class="line">    id value = dictionary[key];</div><div class="line">    NSLog(@&quot;Value: %@ for key: %@&quot;, value, key);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="NSMutableDictionary"><a href="#NSMutableDictionary" class="headerlink" title="NSMutableDictionary"></a>NSMutableDictionary</h3><p>NSMutableDictionary 是 NSDictionary的子类，所以继承了NSDictionary的方法。</p>
+<ul>
+<li><p>[NSMutableDictionary dictionaryWithCapacity:10] : 创建一个可变词典初始指定它的长度为10，动态的添加数据如果超过10这个词典长度会自动增加，所以不用担心数组越界。推荐用这种方式。</p>
+</li>
+<li><p>[NSMutableDictionary initWithCapacity:10]  :只是初始化一个词典的长度为10。</p>
+</li>
+<li><p>[dictionary setObject:@”Will” forKey:@”Name”] :向可变的词典动态的添加数据 ，这里的key是Name ，value是Will。如果词典中存在这个KEY的数据则直接替换这个KEY的值。</p>
+</li>
+<li><p>[dictionary removeAllObjects..] : 删除掉词典中的所有数据。</p>
+</li>
+<li><p>[dictionary removeObjectForKey..] :删除掉词典中指定KEY的数据 。</p>
+</li>
+</ul>
+<h2 id="打印日志"><a href="#打印日志" class="headerlink" title="打印日志"></a>打印日志</h2><p>从上面的代码也能看出来，打印日志的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSLog(@&quot;Hello World!&quot;);</div></pre></td></tr></table></figure>
+<p>但是：</p>
+<ul>
+<li>NSLog 耗费比较大的资源</li>
+<li>NSLog 其实是被设计为Error Log，是ASL（Apple System Log）的高层封装</li>
+</ul>
+<p>所以不建议大范围使用 NSLog，在项目中避免提交自己的 Debug Log，Release版本更要注意去除 NSLog，可以使用自建的 Log 系统或好用的 Log 系统来替代 NSLog。</p>
+<p>推荐使用 <a href="[https://github.com/CocoaLumberjack/CocoaLumberjack]">CocoaLumberjack</a> 像Android一样打Log:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">DDLogVerbose(@&quot;Verbose&quot;);</div><div class="line">DDLogDebug(@&quot;Debug&quot;);</div><div class="line">DDLogInfo(@&quot;Info&quot;);</div><div class="line">DDLogWarn(@&quot;Warn&quot;);</div><div class="line">DDLogError(@&quot;Error&quot;);</div></pre></td></tr></table></figure>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><h3 id="interface-与-implementation"><a href="#interface-与-implementation" class="headerlink" title="@interface 与 @implementation"></a>@interface 与 @implementation</h3><p>首先说明，Objective-C 的 interface 与 Java 的 interface 完全不是一个意思，没有可比性，和 Java 的 Interface 概念相似的在 Objective-C 里叫 Protocol，后面会讲到。</p>
+<p>Objective-C 的类分为接口定义和实现两个部分。</p>
+<ul>
+<li>@interface 接口定义放在头文件中，文件扩展名是.h</li>
+<li>@implementation 实现放在实现文件中，文件扩展名是.m（也有.mm的扩展名，表示Objective-C和C++混编的代码）</li>
+</ul>
+<p>需要注意的是，与 Objective-C 的 interface 概念最接近的是C和C++里的头文件，它与implementation 是成双成对出现的，作用是声明类的成员变量和方法。</p>
+<p>看个示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//  MyClass.h</div><div class="line"></div><div class="line">@interface MyClass &#123;</div><div class="line">    int memberVar1;</div><div class="line">    id  memberVar2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void) instance_method1; </div><div class="line">-(return_type) instance_method2: (int) p1;</div><div class="line">-(return_type) instance_method3: (int) p1 andPar: (int) p2;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//  MyClass.m</div><div class="line"></div><div class="line">@implementation MyClass &#123;</div><div class="line">    int memberVar3;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void) instance_method1 &#123;</div><div class="line">    ....</div><div class="line">&#125;</div><div class="line">-(return_type) instance_method2: (int) p1 &#123;</div><div class="line">    ....</div><div class="line">&#125;</div><div class="line">-(return_type) instance_method3: (int) p1 andPar: (int) p2 &#123;</div><div class="line">    ....</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>接口和实现以@interface、@implementation开头，都以@end结束。“@”符号在Objective-C中是个很神奇的符号。</p>
+<p>冒号也是方法名的一部分，method和method:是两个不同的方法名，不是重载，第二个带参数。</p>
+<p>上述代码对应的Java版：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">//  MyClass.java</div><div class="line"></div><div class="line">public class MyClass &#123;</div><div class="line">    protected int memberVar1;</div><div class="line">    protected pointer memberVar2;</div><div class="line">    private int memberVar3;</div><div class="line"></div><div class="line">    public (return_type) instance_method1() &#123;</div><div class="line">        ....</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public (return_type) instance_method2(int p1) &#123;</div><div class="line">        ....</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public (return_type) instance_method3andPar(int p1, int p2) &#123;</div><div class="line">        ....</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="property-与-synthesize"><a href="#property-与-synthesize" class="headerlink" title="@property 与 @synthesize"></a>@property 与 @synthesize</h3><p>这两个关键字，简单来说就是声明变量和简化getter和setter。</p>
+<ul>
+<li>@property 在.h文件中声明变量</li>
+<li>@synthesize 在.m文件中合成getter和setter</li>
+</ul>
+<p>先看一下@property的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, copy) NSString *recievedContent;</div></pre></td></tr></table></figure>
+<p>括号中的关键字定义了这个变量的属性，属性定义大致分为三类：</p>
+<p><em>原子性</em></p>
+<ul>
+<li>atomic(默认)：atomic 意为操作是原子的，意味着只有一个线程访问实例变量。atomic 是线程安全的至少在当前的访器上我是安全的。它是一个默认的，但是很少使用。它的比较慢，这跟 ARM 平台和内部锁机制有关。</li>
+<li>nonatomic：跟 atomic 刚好相反。表示非原子的，可以被多个线程访问。它的速度比atomic快。但不能保证在多线程环境下的安全性，在单线程和明确只有一个线程访问的情况下广泛使用。</li>
+</ul>
+<p><em>访问器控制</em></p>
+<ul>
+<li>readwrite(默认)：readwrite 是默认的，表示同时拥有 setter 和 getter。</li>
+<li>readonly：readonly 表示只有 getter 没有 setter。</li>
+</ul>
+<p><em>内存管理</em></p>
+<ul>
+<li>assign（默认）：用于值类型，如 int, float, double 和 NSInteger, CGFloat 等表示单纯的复制。还包括不存在所有权关系的对象，比如常见的 delegate。</li>
+<li>retain：使用了 retain 意味着实例变量要获取传入参数的所有权。具体表现在 setter 中对实例变量先 release 然后将参数 retain 之后传给它。</li>
+<li>strong：是在 ARC 伴随 iOS 引入的时候引入的关键字是 retain 的一个可选的替代。表示实例变量对传入的参数要有所有权关系即强引用。strong 跟 retain 的意思相同并产生相同的代码，但是语意上更好更能体现对象的关系。</li>
+<li>weak： weak 跟 assign 的效果相似，不同的是 weak 在对象被回收之后自动设置为 nil。而且 weak 只能用在 iOS5 或以后的版本，对于之前的版本，使用 unsafe_unretained。</li>
+<li>unsafe_unretained：weak 的低版本替代。</li>
+<li>copy：copy 是为是实例变量保留一个自己的副本。</li>
+</ul>
+<p>再看@synthesize，举个Student的例子。</p>
+<p>不用@synthesize的话，这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//  Student.h</div><div class="line"></div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Student : NSObject</div><div class="line">&#123;</div><div class="line">    int age;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// age的getter和setter方法声明</div><div class="line">- (int)age;</div><div class="line">- (void)setAge:(int)newAge;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//  Student.m</div><div class="line"></div><div class="line">#import &quot;Student.h&quot;</div><div class="line"></div><div class="line">@implementation Student</div><div class="line"></div><div class="line">// age的getter和setter方法的实现</div><div class="line">- (int)age</div><div class="line">&#123;</div><div class="line">    return age;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void)setAge:(int)newAge</div><div class="line">&#123;</div><div class="line">    age = newAge;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>实际使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Student *stu = [[Student alloc] init];</div><div class="line">stu.age = 100;//这句相当于setter方法</div><div class="line">NSLog(@&quot;age is %i&quot;, stu.age);//这里的 stu.age 相当于getter方法</div></pre></td></tr></table></figure>
+<p>但如果用@synthesize的话，就只要这么写：       </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//  Student.h</div><div class="line"></div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Student : NSObject</div><div class="line">&#123;</div><div class="line">    int age;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 当编译器遇到 @property时，会自动展开成getter和setter的声明</div><div class="line">@property int age;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//  Student.m</div><div class="line"></div><div class="line">#import &quot;Student.h&quot;</div><div class="line"></div><div class="line">@implementation Student</div><div class="line"></div><div class="line">// @synthesize 会自动生成getter和setter的实现</div><div class="line">// @synthesize 默认会去访问age同名的变量</div><div class="line">// 如果找不到同名的变量，会在内部自动生成一个私有同名变量age</div><div class="line">// 因此Student.h 中的这几个变量也可以省略不写</div><div class="line">@synthesize age;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>变量的实际使用还是一样，但简化了代码。</p>
+<h3 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h3><p>前面看到的都是实例方法，和Java一样，必须实例化才能调用。实例方法有一个减号前缀。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// MyClass.m</div><div class="line"></div><div class="line">@implementation MyClass</div><div class="line"></div><div class="line">-(void) sayHello &#123;</div><div class="line">    NSLog(@&quot;Hello World!&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MyClass myClass = [MyClass new];</div><div class="line">[myClass sayHello];</div></pre></td></tr></table></figure>
+<h3 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h3><p>类方法就是Java中的静态方法，不用实例化就能调。类方法有一个加号前缀。 </p>
+<p>上面的实例方法用类方法来写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// MyClass.h</div><div class="line"></div><div class="line">@interface MyClass</div><div class="line">    +(void) sayHello;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// MyClass.m</div><div class="line"></div><div class="line">@implementation MyClass</div><div class="line"></div><div class="line">+(void) sayHello &#123;</div><div class="line">    NSLog(@&quot;Hello, World&quot;);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>使用:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[MyClass sayHello];</div></pre></td></tr></table></figure>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>在@interface 中定义类时，使用引号单继承父类，语法上不支持多继承。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// MyClass.h</div><div class="line"></div><div class="line">@interface MyClass : NSObject</div><div class="line"></div><div class="line">-(void) sayHello;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>对应的Java版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public class MyClass extends NSObject &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="协议-Protocol（接口回调）"><a href="#协议-Protocol（接口回调）" class="headerlink" title="协议 Protocol（接口回调）"></a>协议 Protocol（接口回调）</h2><p>Protocol 的概念就等于 Java 中的 Interface。</p>
+<h3 id="Protocol的定义"><a href="#Protocol的定义" class="headerlink" title="Protocol的定义"></a>Protocol的定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@protocol Printable</div><div class="line">    -(void)print:(NSString)str;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>对应的Java版本是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">publilc interface Printable &#123;</div><div class="line">    public void print(String str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>和Java的Interface不同的是，Protocol可以包含可选方法，也就是方法可以不被类实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@protocol Printable</div><div class="line">@optional</div><div class="line">    -(void)print:(NSString)str;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>加了@optional关键字，这个类在implements这个协议时，便可以不实现print:方法。</p>
+<h3 id="Protocol的继承"><a href="#Protocol的继承" class="headerlink" title="Protocol的继承"></a>Protocol的继承</h3><p>协议本身也可以继承别的协议：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@protocol Printable &lt;NSObject&gt;</div><div class="line">    -(void)print:(NSString)str;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>对应的Java版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Printable extends NSObject &#123;</div><div class="line">    public void print (String str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Protocol的实现"><a href="#Protocol的实现" class="headerlink" title="Protocol的实现"></a>Protocol的实现</h3><p>一个类实现某些协议是写在 Interface 定义里面的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@interface  class MyClass : NSObject &lt;Printable, Drawable&gt;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>Printable, Drawablw就是两个协议。语法为：协议名用尖括号包裹，多个协议名用逗号隔开，协议写在父类的右边（如果没有父类就直接写在子类右边）。</p>
+<p>对应的Java版本是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public class MyClass extends NSObject implements Printable, Drawable &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="分类-Category"><a href="#分类-Category" class="headerlink" title="分类 Category"></a>分类 Category</h2><p>分类可以给一个已经存在的类增加方法，而不用去改它的源码。Java中没有类似的特性。</p>
+<p>比如说，NSObject是一个 ObjC 内置的系统类，我们想给它增加toJson方法，就像这样：</p>
+<p>头文件：NSObject+Json.h</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@interface NSObject (Json)</div><div class="line">    -(NSString)toJson;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>实现文件：NSObject+Json.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@implementation NSObject (Json)</div><div class="line">    -(NSString)toJson &#123;</div><div class="line">        //...</div><div class="line">    &#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>使用的时候，只要import NSObject+Json.h，实例化NSObject类，就可以使用toJson方法了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#import &quot;NSObject+Json.h&quot;</div><div class="line">@implatementation XYZController</div><div class="line">    -(void)test &#123;</div><div class="line">    	 // 实例化的还是 NSObject</div><div class="line">        NSObject *obj = [[NSObject alloc]init];</div><div class="line">        NSString *str = [obj toJson];</div><div class="line">    &#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>当然了，NSObject 本来的那些方法依然还是可以用的，什么都没变，只是多了个toJson方法。这样看起来好像和继承没太多差别（除了使用的时候实例化的是NSObject，而不是JsonObject），再看一个继承实现不了的例子：</p>
+<p>头文件：NSObject+Json+XML.h</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@interface NSObject (Json)</div><div class="line">    -(NSString)toJson;</div><div class="line">@end</div><div class="line"></div><div class="line">@interface NSObject (XML)</div><div class="line">    -(NSString)toXML;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>实现文件：NSObject+Json+XML.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@implementation NSObject (Json)</div><div class="line">    -(NSString)toJson &#123;</div><div class="line">        //...</div><div class="line">    &#125;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation NSObject (XML)</div><div class="line">    -(NSString)toXML &#123;</div><div class="line">        //...</div><div class="line">    &#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#import &quot;NSObject+Json+XML.h&quot;</div><div class="line">@implatementation XYZController</div><div class="line">    -(void)test &#123;</div><div class="line">        NSObject *obj = [[NSObject alloc]init];</div><div class="line">        NSString *json = [obj toJson];</div><div class="line">        NSString *xml = [obj toXML];</div><div class="line">    &#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<h2 id="块-block"><a href="#块-block" class="headerlink" title="块 block"></a>块 block</h2><p>iOS SDK 4.0 开始，Apple引入了block这一特性，而自从block特性诞生之日起，似乎它就受到了Apple特殊的照顾和青睐。简单来说，block就是一个代码块，它本身封装了一段代码并将这段代码当做变量，通过block()的方式进行回调。</p>
+<h3 id="block的定义格式"><a href="#block的定义格式" class="headerlink" title="block的定义格式"></a>block的定义格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">返回值类型(^block变量名)(形参列表) = ^(形参列表) &#123;</div><div class="line">    // do something</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 举例</div><div class="line">int (^sumOfNumbers)(int a, int b) = ^(int a, int b) &#123;</div><div class="line">    return a + b;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 输出3</div><div class="line">NSLog(@&quot;%@&quot;, sumOfNumbers(1，2));</div></pre></td></tr></table></figure>
+<p>名称前用^符号表示后面的字符串是 block 的名称，而在等号右侧表示这个 block 的定义，其中返回值是可以省略的，编译器会根据上下文自动补充返回值类型。等号右侧使用^符号衔接着一个参数列表，使用括号包起来，告诉编译器这是一个 block ，然后使用大括号将 block 的代码封装起来。</p>
+<p>block 的神奇之处在于 block 外的变量可以无缝地直接在 block 内部使用，比如这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">float price = 1.99; </div><div class="line">float (^finalPrice)(int) = ^(int quantity) &#123;</div><div class="line">    return quantity * price;</div><div class="line">&#125;;</div><div class="line">int orderQuantity = 10;</div><div class="line">NSLog(@&quot;Ordering %d units, final price is: $%2.2f&quot;, orderQuantity, finalPrice(orderQuantity));</div></pre></td></tr></table></figure>
+<p>输出为 Ordering 10 units, final price is: $19.90</p>
+<p>可以看到，block 外的 price 成功地在 block 内部也能使用了，这意味着内联函数可以使用处于同一scope里的局部变量。但是需要注意的是，你不能在 Block 内部不能修改外面的局部变量，比如在 { } 里写 “price = 0.99” 这样的语句的话，编译器就会报错。</p>
+<p>比如接着上面的代码，继续写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">price = .99;</div><div class="line">NSLog(@&quot;Ordering %d units, final price is: $%2.2f&quot;, orderQuantity, finalPrice(orderQuantity));</div></pre></td></tr></table></figure>
+<p>输出还是 Ordering 10 units, final price is: $19.90</p>
+<p>可以理解为在 block 内的 price 是 readonly 的，只在定义 block 时能够被赋值。</p>
+<p>补充说明，实际上是因为price是value type，block内的price是在申明block时复制了一份到block内，block外面的price无论怎么变化都和block内的price无关了。如果是reference type的话，外部的变化实际上是会影响block内的。</p>
+<p>但是如果确实需要传递给block变量值的话，可以考虑下面两种方法：</p>
+<ul>
+<li>将局部变量声明为__block，表示外部变化将会在block内进行同样操作</li>
+<li>使用实例变量，实例内的变量横行于整个实例内</li>
+</ul>
+<p>由于block的灵活的机制，导致iOS SDK 4.0开始，Apple大力提倡在各种地方应用block机制。</p>
+<p>最典型的当属 UIView 的动画了，下面会讲到。</p>
+<p>另外要提到的是，Apple 所推荐的 block 使用范围包括以下几个方面：</p>
+<ul>
+<li>枚举——通过block获取枚举对象或控制枚举进程</li>
+<li>View动画——简单明了的方式规定动画</li>
+<li>排序——在block内写排序算法</li>
+<li>通知——当某事件发生后执行block内的代码</li>
+<li>错误处理——当错误发生时执行block代码</li>
+<li>完成处理——当方法执行完毕后执行block代码</li>
+<li>GCD多线程——多线程控制</li>
+</ul>
+<h1 id="布局和控件"><a href="#布局和控件" class="headerlink" title="布局和控件"></a>布局和控件</h1><h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><p>关于 iOS 的布局篇幅较大，会另起一篇来讲。包括Xib布局，StoryBoard布局，和手写UI布局 Masonry 等等。</p>
+<h2 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h2><p>简单了解一下几个常用控件</p>
+<h3 id="UIView"><a href="#UIView" class="headerlink" title="UIView"></a>UIView</h3><p>对应 Android 中的 View，是 UILabel、UIImageView 等控件的父类。</p>
+<p>先看一下如何创建 UIView</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CGRect  viewRect = CGRectMake(10, 10, 100, 100); // (x,y,width,height)</div><div class="line">UIView* myView = [[UIView alloc] initWithFrame:viewRect];</div><div class="line">[self.view addSubview: myView];</div></pre></td></tr></table></figure>
+<p>CGRect 定义了坐标（10，10）和宽高 100，通过 initWithFrame 方法创建UIView。<br>再通过 addSubview 方法把子视图添加到父视图。再看一下一些基础的属性：</p>
+<ul>
+<li>frame 大小和位置，包含 origin:x和y，size:width和height</li>
+<li>bounds 边界，定义了自己的坐标系，子视图根据bounds指定的原点添加到此视图</li>
+<li>center 中心位置</li>
+<li>transform 可以控制位移，旋转，和缩放</li>
+<li>alpha 透明度</li>
+<li>backgroundColor 背景颜色</li>
+</ul>
+<h3 id="UILabel-文本框"><a href="#UILabel-文本框" class="headerlink" title="UILabel 文本框"></a>UILabel 文本框</h3><p>对应 Android 中的 TextView</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">UILabel *label = [[UILabel alloc]init]; //初始化     </div><div class="line">label.text = @&quot;Hi&quot;;	//给label赋值文本内容</div><div class="line">label.backgroundColor = [UIColor blackColor]; //设置lable背景颜色为黑色</div><div class="line">[label setTextColor:[UIColor whiteColor]]; //设置文本字体颜色为白色</div><div class="line">label.font = [UIFont systemFontOfSize:15.0]; //设置label字体大小</div><div class="line">label.frame = CGRectMake(20, 60, 200, 40); //设置label的x、y坐标以及长度  和高度</div></pre></td></tr></table></figure>
+<h3 id="UIImageView-图片"><a href="#UIImageView-图片" class="headerlink" title="UIImageView 图片"></a>UIImageView 图片</h3><p>对应 Android 中的 ImageView</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 创建 UIImageView 的几种方法</div><div class="line">UIImageView *imageView = [[UIImageView alloc] init];</div><div class="line">UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:(CGRect)];</div><div class="line">UIImageView *imageView2 = [[UIImageView alloc] initWithImage:(UIImage *)];</div><div class="line">UIImageView *imageView3 = [[UIImageView alloc] initWithImage:(UIImage *) highlightedImage:(UIImage *)];</div><div class="line">UIImageView *imageView4 = [[UIImageView alloc] initWithCoder:(NSCoder *)];</div><div class="line"></div><div class="line">// 其他方法</div><div class="line">imageView.image = [UIImage imageNamed:@&quot;image.png&quot;];	// 正常显示的图片</div><div class="line">imageView.highlightedImage = [UIImage imageNamed:@&quot;image_sel.png&quot;]; 	// 高亮时显示的图片</div><div class="line">imageView.contentMode = UIViewContentModeScaleAspectFit; // 图片显示方式</div><div class="line">imageView.hidden = YES或者NO;    // 隐藏或者显示图片</div><div class="line">imageView.alpha = (CGFloat) al;    // 透明度</div></pre></td></tr></table></figure>
+<p>UIImageView 的 contentMode 属性，和 Android 中的 ScaleType 类似，这个属性是用来设置图片的显示方式，如居中、居右，是否缩放等，有以下几个常量可供设定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">UIViewContentModeScaleToFill</div><div class="line">UIViewContentModeScaleAspectFit</div><div class="line">UIViewContentModeScaleAspectFill</div><div class="line"></div><div class="line">UIViewContentModeRedraw</div><div class="line">UIViewContentModeCenter</div><div class="line">UIViewContentModeTop</div><div class="line">UIViewContentModeBottom</div><div class="line">UIViewContentModeLeft</div><div class="line">UIViewContentModeRight</div><div class="line">UIViewContentModeTopLeft</div><div class="line">UIViewContentModeTopRight</div><div class="line">UIViewContentModeBottomLeft</div><div class="line">UIViewContentModeBottomRight</div></pre></td></tr></table></figure>
+<p>以上几个常量，凡是没有带Scale的，当图片尺寸超过 ImageView尺寸时，只有部分显示在ImageView中。</p>
+<p>UIViewContentModeScaleToFill 可能会导致图片变形。UIViewContentModeScaleAspectFit 会保证图片比例不变，而且全部显示在ImageView中，这意味着ImageView会有部分空白。<br>UIViewContentModeScaleAspectFill 也会证图片比例不变，但是是填充整个ImageView的，可能只有部分图片显示出来。</p>
+<h3 id="UIButton-按钮"><a href="#UIButton-按钮" class="headerlink" title="UIButton 按钮"></a>UIButton 按钮</h3><p>对应 Android 中的 Button，和 UILabel、UIImageView 不同的是，UIButton 继承自 UIControl，而 UIControl 继承自 UIView，主要将手势识别为具体的动作：按下，抬起…等。如果规定继承自 UIControl 才是控件的话，那么 UILabel 只能算UI组件，而不是UI控件。常见控件还有：UISwitch 开关、UISegmentedControl 分段、UISlider 滑块、UITextField 文本输入框、UIPageControl 分页等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 100, 50)];</div><div class="line">[_window addSubview:button];</div><div class="line">// 设置tag值</div><div class="line">button.tag = 100;</div><div class="line">// 设置背景颜色</div><div class="line">button.backgroundColor = [UIColor redColor];</div><div class="line">// 设置文字，对不同的点击状态设置不同的文字</div><div class="line">[button setTitle:@&quot;点击前&quot; forState:UIControlStateNormal];</div><div class="line">[button setTitle:@&quot;点击中&quot; forState:UIControlStateHighlighted];</div><div class="line">[button setTitle:@&quot;点击后&quot; forState:UIControlStateSelected];</div><div class="line">// 设置图片，对不同的点击状态设置不同的图片</div><div class="line">[button setImage:[UIImage imageNamed:@&quot;button.png&quot;] forState:UIControlStateNormal];</div><div class="line">[button setImage:[UIImage imageNamed:@&quot;button_up.png&quot;] forState:UIControlStateHighlighted];</div></pre></td></tr></table></figure>
+<p>添加按钮的点击事件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">// UIControlEventTouchUpInside 当手指按下按钮并且松开的一瞬间，self 去调用onclicked 方法</div><div class="line">[button addTarget:self </div><div class="line">           action:@selector(onclicked:)</div><div class="line"> forControlEvents:UIControlEventTouchUpInside];</div><div class="line">...</div><div class="line"></div><div class="line">#pragma mark - 点击事件</div><div class="line">- (void)onclicked:(UIButton *)sender&#123;</div><div class="line">    // 通过 tag 来区分不同的按钮</div><div class="line">    if (sender.tag == 100) &#123;</div><div class="line">        sender.backgroundColor = [UIColor greenColor];   </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>action 参数这里出现的 @selector，和 Android 中的 selector 也不是一个概念，在 iOS 中 @selector 表示一种类型 SEL，是对方法的一种包装。</p>
+<p>可以简单这么理解：包装的SEL类型数据含有对应的方法地址，找到方法地址就可以调用方法。在内存中每个类的方法都存储在类对象中，每个方法都有一个与之对应的SEL类型的数据，根据一个SEL数据就可以找到对应的方法地址，进而调用方法。</p>
+<blockquote>
+<p>和 Android 不同的是，addTarget:action:forControlEvents 这个方法并不属于  UIView，也就是说 UILabel 和 UIImageView 不能使用这个方法添加点击事件。</p>
+<p>UIImageView 需要使用 UITapGestureRecognizer 添加点击事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; imageView.userInteractionEnabled = YES;</div><div class="line">UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImageView:)];</div><div class="line">[imageView addGestureRecognizer:singleTap];</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="动画-Core-Animation"><a href="#动画-Core-Animation" class="headerlink" title="动画 Core Animation"></a>动画 Core Animation</h1><p>iOS 的动画主要是指 Core Animation，是 iOS 和 macOS平台上负责图形渲染与动画的基础框架。官方文档地址 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html" target="_blank" rel="external">Core Animation Guide</a>。</p>
+<p>Core Animation 将大部分实际的绘图任务交给了图形硬件来处理，图形硬件会加速图形渲染的速度。这种自动化的图形加速技术让动画拥有更高的帧率并且显示效果更加平滑，不会加重CPU的负担而影响程序的运行速度。</p>
+<p>UIView 动画实质上是对 Core Animation 的封装，提供简洁的动画接口。</p>
+<h2 id="执行动画"><a href="#执行动画" class="headerlink" title="执行动画"></a>执行动画</h2><p>在4.0前执行 UIView 的 Animation 大概是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 开始</div><div class="line">[UIView beginAnimations:@&quot;ToggleSiblings&quot; context:nil];</div><div class="line">...</div><div class="line">[UIView setAnimationDuration:1.0f];</div><div class="line">// 结束</div><div class="line">[UIView commitAnimations];</div></pre></td></tr></table></figure>
+<p>在 begin/commit 两行代码间写下需要执行的动作。</p>
+<p>而4.0后这样的方法直接被 Discouraged 了(虽然还没Deprecated)，取而代之的是block 写法。</p>
+<ul>
+<li>简单的时间和动画：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[UIView animateWithDuration:(NSTimeInterval)  </div><div class="line">                animations:^&#123;</div><div class="line">   				//执行的动画</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>执行的动画 block 体中，可以对 UIView 的各属性进行设置，包括frame, bounds, center, transform, alpha, backgroundColor 等等。</p>
+<ul>
+<li>可设置延迟时间\过渡效果\动画执行完毕之后的回调</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[UIView animateWithDuration:(NSTimeInterval) //动画持续时间</div><div class="line">                      delay:(NSTimeInterval) //动画延迟执行的时间</div><div class="line">                    options:(UIViewAnimationOptions) //动画的过渡效果</div><div class="line">                 animations:^&#123;</div><div class="line">                  //执行的动画</div><div class="line">&#125;                completion:^(BOOL finished) &#123;</div><div class="line">                  //动画执行完毕后的操作</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>其中的过渡效果 UIViewAnimationOptions 枚举值如下，可组合使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">UIViewAnimationOptionLayoutSubviews            //进行动画时布局子控件</div><div class="line">UIViewAnimationOptionAllowUserInteraction      //进行动画时允许用户交互</div><div class="line">UIViewAnimationOptionBeginFromCurrentState     //从当前状态开始动画</div><div class="line">UIViewAnimationOptionRepeat                    //无限重复执行动画</div><div class="line">UIViewAnimationOptionAutoreverse               //执行动画回路</div><div class="line">UIViewAnimationOptionOverrideInheritedDuration //忽略嵌套动画的执行时间设置</div><div class="line">UIViewAnimationOptionOverrideInheritedCurve    //忽略嵌套动画的曲线设置</div><div class="line">UIViewAnimationOptionAllowAnimatedContent      //转场：进行动画时重绘视图</div><div class="line">UIViewAnimationOptionShowHideTransitionViews   //转场：移除（添加和移除图层的）动画效果</div><div class="line">UIViewAnimationOptionOverrideInheritedOptions  //不继承父动画设置</div><div class="line"></div><div class="line">UIViewAnimationOptionCurveEaseInOut            //时间曲线，慢进慢出（默认值）</div><div class="line">UIViewAnimationOptionCurveEaseIn               //时间曲线，慢进</div><div class="line">UIViewAnimationOptionCurveEaseOut              //时间曲线，慢出</div><div class="line">UIViewAnimationOptionCurveLinear               //时间曲线，匀速</div><div class="line"></div><div class="line">UIViewAnimationOptionTransitionNone            //转场，不使用动画</div><div class="line">UIViewAnimationOptionTransitionFlipFromLeft    //转场，从左向右旋转翻页</div><div class="line">UIViewAnimationOptionTransitionFlipFromRight   //转场，从右向左旋转翻页</div><div class="line">UIViewAnimationOptionTransitionCurlUp          //转场，下往上卷曲翻页</div><div class="line">UIViewAnimationOptionTransitionCurlDown        //转场，从上往下卷曲翻页</div><div class="line">UIViewAnimationOptionTransitionCrossDissolve   //转场，交叉消失和出现</div><div class="line">UIViewAnimationOptionTransitionFlipFromTop     //转场，从上向下旋转翻页</div><div class="line">UIViewAnimationOptionTransitionFlipFromBottom  //转场，从下向上旋转翻页</div></pre></td></tr></table></figure>
+<h2 id="转场动画"><a href="#转场动画" class="headerlink" title="转场动画"></a>转场动画</h2><ul>
+<li>从旧视图转到新视图的动画效果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[UIView transitionFromView:(nonnull UIView *)</div><div class="line">                    toView:(nonnull UIView *)</div><div class="line">                  duration:(NSTimeInterval)</div><div class="line">                   options:(UIViewAnimationOptions)</div><div class="line">                completion:^(BOOL finished) &#123;</div><div class="line">                    //动画执行完毕后的操作</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>在该动画过程中，fromView 会从父视图中移除，并讲 toView 添加到父视图中，注意转场动画的作用对象是父视图（过渡效果体现在父视图上）。<br>调用该方法相当于执行下面两句代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[fromView.superview addSubview:toView];</div><div class="line">[fromView removeFromSuperview];</div></pre></td></tr></table></figure>
+<ul>
+<li>单个视图的过渡效果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[UIView transitionWithView:(nonnull UIView *)</div><div class="line">                  duration:(NSTimeInterval)</div><div class="line">                   options:(UIViewAnimationOptions)</div><div class="line">                animations:^&#123;</div><div class="line">                //执行的动画</div><div class="line">&#125;               completion:^(BOOL finished) &#123;</div><div class="line">                //动画执行完毕后的操作</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<h2 id="Spring-动画"><a href="#Spring-动画" class="headerlink" title="Spring 动画"></a>Spring 动画</h2><p>iOS 7.0后新增 Spring 动画，iOS系统动画大部分采用Spring Animation，适用于所有可被添加动画效果的属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[UIView animateWithDuration:(NSTimeInterval)//动画持续时间</div><div class="line">                      delay:(NSTimeInterval)//动画延迟执行的时间</div><div class="line">     usingSpringWithDamping:(CGFloat)//震动效果，范围0~1，数值越小震动效果越明显</div><div class="line">      initialSpringVelocity:(CGFloat)//初始速度，数值越大初始速度越快</div><div class="line">                    options:(UIViewAnimationOptions)//动画的过渡效果</div><div class="line">                 animations:^&#123;</div><div class="line">                    //执行的动画</div><div class="line">&#125;                completion:^(BOOL finished) &#123;</div><div class="line">                    //动画执行完毕后的操作</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<h2 id="Keyframes-动画"><a href="#Keyframes-动画" class="headerlink" title="Keyframes 动画"></a>Keyframes 动画</h2><p>iOS 7.0 后新增 Keyframes 关键帧动画，支持属性关键帧，不支持路径关键帧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[UIView animateKeyframesWithDuration:(NSTimeInterval)//动画持续时间</div><div class="line">                               delay:(NSTimeInterval)//动画延迟执行的时间</div><div class="line">                             options:(UIViewKeyframeAnimationOptions)//动画的过渡效果</div><div class="line">                          animations:^&#123;</div><div class="line">                        //执行的关键帧动画</div><div class="line">&#125;                         completion:^(BOOL finished) &#123;</div><div class="line">                        //动画执行完毕后的操作</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>其中 UIViewKeyframeAnimationOptions 的枚举值如下，可组合使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">UIViewAnimationOptionLayoutSubviews           //进行动画时布局子控件</div><div class="line">UIViewAnimationOptionAllowUserInteraction     //进行动画时允许用户交互</div><div class="line">UIViewAnimationOptionBeginFromCurrentState    //从当前状态开始动画</div><div class="line">UIViewAnimationOptionRepeat                   //无限重复执行动画</div><div class="line">UIViewAnimationOptionAutoreverse              //执行动画回路</div><div class="line">UIViewAnimationOptionOverrideInheritedDuration //忽略嵌套动画的执行时间设置</div><div class="line">UIViewAnimationOptionOverrideInheritedOptions //不继承父动画设置</div><div class="line"></div><div class="line">UIViewKeyframeAnimationOptionCalculationModeLinear     //运算模式 :连续</div><div class="line">UIViewKeyframeAnimationOptionCalculationModeDiscrete   //运算模式 :离散</div><div class="line">UIViewKeyframeAnimationOptionCalculationModePaced      //运算模式 :均匀执行</div><div class="line">UIViewKeyframeAnimationOptionCalculationModeCubic      //运算模式 :平滑</div><div class="line">UIViewKeyframeAnimationOptionCalculationModeCubicPaced //运算模式 :平滑均匀</div></pre></td></tr></table></figure>
+<h1 id="多线程-GCD"><a href="#多线程-GCD" class="headerlink" title="多线程 GCD"></a>多线程 GCD</h1><p>Grand Central Dispatch (GCD) 是 Apple 开发的一个多核编程的解决方法。该方法在 Mac OS X 10.6 雪豹中首次推出，并随后被引入到了 iOS4.0 中。</p>
+<p>GCD 和 block 的配合使用，可以方便地进行多线程编程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">//  后台执行：</div><div class="line">dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</div><div class="line">     // something</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 主线程执行：</div><div class="line">dispatch_async(dispatch_get_main_queue(), ^&#123;</div><div class="line">     // something</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 一次性执行：</div><div class="line">static dispatch_once_t onceToken;</div><div class="line">dispatch_once(&amp;onceToken, ^&#123;</div><div class="line">    // code to be executed once</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 延迟 2 秒执行：</div><div class="line">double delayInSeconds = 2.0;</div><div class="line">dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);</div><div class="line">dispatch_after(popTime, dispatch_get_main_queue(), ^(void)&#123;</div><div class="line">    // code to be executed on the main queue after delay</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h1><h2 id="AFNetworking"><a href="#AFNetworking" class="headerlink" title="AFNetworking"></a>AFNetworking</h2><p><a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="external">AFNetworking</a> 是一个为 iOS 和 Mac OSX 制作的网络库。目前最新版为3.0。</p>
+<ul>
+<li>支持HTTP请求和基于REST的网络服务(包括GET、POST、 PUT、DELETE等)</li>
+<li>支持ARC（Automatic Reference Counting，自动引用计数）</li>
+<li>要求iOS 5.0及以上版本</li>
+<li>UIKit扩展</li>
+</ul>
+<h2 id="SDWebImage"><a href="#SDWebImage" class="headerlink" title="SDWebImage"></a>SDWebImage</h2><p><a href="https://github.com/rs/SDWebImage" target="_blank" rel="external">SDWebImage</a> 异步的图片下载缓存器。</p>
+<ul>
+<li>UIImageView, UIButton, MKAnnotationView 的 Category 使用简单方便</li>
+<li>异步下载,一行代码调用，几乎无需配置</li>
+<li>默认硬盘和内存缓存，自动管理</li>
+<li>支持 WebP Gif格式</li>
+<li>有防止重复下载,下载失败重试等灵活的设置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#import &lt;SDWebImage/UIImageView+WebCache.h&gt;</div><div class="line">...</div><div class="line">[imageView sd_setImageWithURL:[NSURL URLWithString:@&quot;http://www.domain.com/path/to/image.jpg&quot;]</div><div class="line">             placeholderImage:[UIImage imageNamed:@&quot;placeholder.png&quot;]];</div></pre></td></tr></table></figure>
+<h1 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h1><h2 id="沙盒机制"><a href="#沙盒机制" class="headerlink" title="沙盒机制"></a>沙盒机制</h2><p>数据存储之前，有必要先讲一下「沙盒机制」。iOS程序默认情况下只能访问程序自己的目录，这个目录被称为「沙盒」。</p>
+<p>沙盒的目录结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&quot;应用程序包&quot;</div><div class="line">Documents</div><div class="line">Library</div><div class="line">    Caches</div><div class="line">    Preferences</div><div class="line">tmp</div></pre></td></tr></table></figure>
+<ul>
+<li>“应用程序包”: 这里面存放的是应用程序的源文件，包括资源文件和可执行文件。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *path = [[NSBundle mainBundle] bundlePath];</div><div class="line">NSLog(@&quot;%@&quot;, path);</div></pre></td></tr></table></figure>
+<ul>
+<li>Documents: 最常用的目录，iTunes同步该应用时会同步此文件夹中的内容，适合存储重要数据。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;</div><div class="line">NSLog(@&quot;%@&quot;, path);</div></pre></td></tr></table></figure>
+<ul>
+<li>Library/Caches: iTunes不会同步此文件夹，适合存储体积大，不需要备份的非重要数据。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *path = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;</div><div class="line">NSLog(@&quot;%@&quot;, path);</div></pre></td></tr></table></figure>
+<ul>
+<li><p>Library/Preferences: iTunes同步该应用时会同步此文件夹中的内容，通常保存应用的设置信息。</p>
+</li>
+<li><p>tmp: iTunes不会同步此文件夹，系统可能在应用没运行时就删除该目录下的文件，所以此目录适合保存应用中的一些临时文件，用完就删除。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *path = NSTemporaryDirectory();</div><div class="line">NSLog(@&quot;%@&quot;, path);</div></pre></td></tr></table></figure>
+<h2 id="plist文件"><a href="#plist文件" class="headerlink" title="plist文件"></a>plist文件</h2><p>plist文件是将某些特定的类，通过XML文件的方式保存在目录中。</p>
+<p>可以被序列化的类型只有如下几种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">NSArray;</div><div class="line">NSMutableArray;</div><div class="line">NSDictionary;</div><div class="line">NSMutableDictionary;</div><div class="line">NSData;</div><div class="line">NSMutableData;</div><div class="line">NSString;</div><div class="line">NSMutableString;</div><div class="line">NSNumber;</div><div class="line">NSDate;</div></pre></td></tr></table></figure>
+<p>存储时使用 writeToFile: atomically:方法。 其中atomically表示是否需要先写入一个辅助文件，再把辅助文件拷贝到目标文件地址。这是更安全的写入文件方法，一般都写YES。</p>
+<p>读取时使用arrayWithContentsOfFile:方法。</p>
+<p><strong>获得文件路径</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;</div><div class="line">NSString *fileName = [path stringByAppendingPathComponent:@&quot;123.plist&quot;];</div></pre></td></tr></table></figure>
+<p><strong>存储</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSArray *array = @[@&quot;123&quot;, @&quot;456&quot;, @&quot;789&quot;];</div><div class="line">[array writeToFile:fileName atomically:YES];</div></pre></td></tr></table></figure>
+<p><strong>读取</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSArray *result = [NSArray arrayWithContentsOfFile:fileName];</div><div class="line">NSLog(@&quot;%@&quot;, result);</div></pre></td></tr></table></figure>
+<h2 id="NSUserDefaults"><a href="#NSUserDefaults" class="headerlink" title="NSUserDefaults"></a>NSUserDefaults</h2><p>NSUserDefaults 类似于 Android 中的 SharedPreferences，专门用来保存应用程序的配置信息的，一般不要在此保存其他数据。NSUserDefaults 本质上是 Library/Preferences 目录下的一个以此应用包名来命名的 plist 文件。</p>
+<p>如果没有调用 synchronize 方法，系统会根据I/O情况不定时刻地保存到文件中。所以如果需要立即写入文件的就必须调用synchronize方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//获得NSUserDefaults文件</div><div class="line">NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];</div><div class="line"></div><div class="line">//向文件中写入内容</div><div class="line">[userDefaults setObject:@&quot;AAA&quot; forKey:@&quot;a&quot;];</div><div class="line">[userDefaults setBool:YES forKey:@&quot;sex&quot;];</div><div class="line">[userDefaults setInteger:21 forKey:@&quot;age&quot;];</div><div class="line">//立即同步</div><div class="line">[userDefaults synchronize];</div><div class="line"></div><div class="line">//读取文件</div><div class="line">NSString *name = [userDefaults objectForKey:@&quot;a&quot;];</div><div class="line">BOOL sex = [userDefaults boolForKey:@&quot;sex&quot;];</div><div class="line">NSInteger age = [userDefaults integerForKey:@&quot;age&quot;];</div><div class="line"></div><div class="line">NSLog(@&quot;%@, %d, %ld&quot;, name, sex, age);</div></pre></td></tr></table></figure>
+<h2 id="NSKeyedArchiver"><a href="#NSKeyedArchiver" class="headerlink" title="NSKeyedArchiver"></a>NSKeyedArchiver</h2><p>归档在iOS中是另一种形式的序列化，只要遵循了NSCoding协议的对象都可以通过它实现序列化。由于决大多数支持存储数据的Foundation和Cocoa Touch类都遵循了NSCoding协议，因此，对于大多数类来说，归档相对而言还是比较容易实现的。</p>
+<ul>
+<li>把对象归档是调用NSKeyedArchiver的工厂方法 archiveRootObject: toFile: 方法。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">NSString *file = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@&quot;person.data&quot;];</div><div class="line"></div><div class="line">Person *person = [[Person alloc] init];</div><div class="line">person.avatar = self.avatarView.image;</div><div class="line">person.name = self.nameField.text;</div><div class="line">person.age = [self.ageField.text integerValue];</div><div class="line"></div><div class="line">[NSKeyedArchiver archiveRootObject:person toFile:file];</div></pre></td></tr></table></figure>
+<p>在这里归档的类是某个自定义类的子类时，就需要在归档和解档之前先实现父类的归档和解档方法。即 [super encodeWithCoder:aCoder] 和 [super initWithCoder:aDecoder] 方法;</p>
+<p><strong>遵循协议和设置属性</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//1.遵循NSCoding协议 </div><div class="line">@interface Person : NSObject &lt;NSCoding&gt;</div><div class="line"></div><div class="line">//2.设置属性</div><div class="line">@property (strong, nonatomic) UIImage *avatar;</div><div class="line">@property (copy, nonatomic) NSString *name;</div><div class="line">@property (assign, nonatomic) NSInteger age;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p><strong>实现协议方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//解档</div><div class="line">- (id)initWithCoder:(NSCoder *)aDecoder &#123;</div><div class="line">    if ([super init]) &#123;</div><div class="line">        self.avatar = [aDecoder decodeObjectForKey:@&quot;avatar&quot;];</div><div class="line">        self.name = [aDecoder decodeObjectForKey:@&quot;name&quot;];</div><div class="line">        self.age = [aDecoder decodeIntegerForKey:@&quot;age&quot;];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//归档</div><div class="line">- (void)encodeWithCoder:(NSCoder *)aCoder &#123;</div><div class="line">    [aCoder encodeObject:self.avatar forKey:@&quot;avatar&quot;];</div><div class="line">    [aCoder encodeObject:self.name forKey:@&quot;name&quot;];</div><div class="line">    [aCoder encodeInteger:self.age forKey:@&quot;age&quot;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>从文件中解档对象就调用NSKeyedUnarchiver的一个工厂方法 unarchiveObjectWithFile: 即可。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">NSString *file = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@&quot;person.data&quot;];</div><div class="line"></div><div class="line">Person *person = [NSKeyedUnarchiver unarchiveObjectWithFile:file];</div><div class="line">if (person) &#123;</div><div class="line">   self.avatarView.image = person.avatar;</div><div class="line">   self.nameField.text = person.name;</div><div class="line">   self.ageField.text = [NSString stringWithFormat:@&quot;%ld&quot;, person.age];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="CoreData"><a href="#CoreData" class="headerlink" title="CoreData"></a>CoreData</h2><p>CoreData 是 iOS 3.0 引入的一个数据持久化的框架。他与 SQLite 对比最大的优点莫过于支持对象的存储，苹果的官方文档说其简化了数据库的操作，大量减少代码中的 SQL 语句。</p>
+<p>由于目前的项目主要使用 FMDB (下面会讲到)，篇幅有限，CoreData 的详细使用暂不细说。有兴趣的可以阅读<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html#//apple_ref/doc/uid/TP40001075-CH2-SW1" target="_blank" rel="external">官方文档</a>，另外推荐一个关于 CoreData 的封装库<a href="https://github.com/magicalpanda/MagicalRecord" target="_blank" rel="external">MagicalRecord</a>。</p>
+<h2 id="SQLite-3"><a href="#SQLite-3" class="headerlink" title="SQLite 3"></a>SQLite 3</h2><p>SQLite 在 iOS 中的使用，只需要加入 libsqlite3.dylib 依赖以及引入 sqlite3.h 头文件即可。</p>
+<p>先看一下打开数据库的代码操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">#import &quot;DB.h&quot;</div><div class="line"></div><div class="line">@implementation DB</div><div class="line"></div><div class="line">// 创建数据库指针</div><div class="line">static sqlite3 *db = nil;</div><div class="line"></div><div class="line">// 打开数据库</div><div class="line">+ (sqlite3 *)open &#123;</div><div class="line"></div><div class="line">    // 此方法的主要作用是打开数据库</div><div class="line">    // 返回值是一个数据库指针</div><div class="line">    // 因为这个数据库在很多的SQLite API（函数）中都会用到，我们声明一个类方法来获取，更加方便</div><div class="line"></div><div class="line">    // 懒加载</div><div class="line">    if (db != nil) &#123;</div><div class="line">        return db;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // 获取Documents路径</div><div class="line">    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) lastObject];</div><div class="line"></div><div class="line">    // 生成数据库文件在沙盒中的路径</div><div class="line">    NSString *sqlPath = [docPath stringByAppendingPathComponent:@&quot;studentDB.sqlite&quot;];</div><div class="line"></div><div class="line">    // 创建文件管理对象</div><div class="line">    NSFileManager *fileManager = [NSFileManager defaultManager];</div><div class="line"></div><div class="line">    // 判断沙盒路径中是否存在数据库文件，如果不存在才执行拷贝操作，如果存在不在执行拷贝操作</div><div class="line">    if ([fileManager fileExistsAtPath:sqlPath] == NO) &#123;</div><div class="line">        // 获取数据库文件在包中的路径</div><div class="line">        NSString *filePath = [[NSBundle mainBundle] pathForResource:@&quot;studentDB&quot; ofType:@&quot;sqlite&quot;];</div><div class="line"></div><div class="line">        // 使用文件管理对象进行拷贝操作</div><div class="line">        // 第一个参数是拷贝文件的路径</div><div class="line">        // 第二个参数是将拷贝文件进行拷贝的目标路径</div><div class="line">        [fileManager copyItemAtPath:filePath toPath:sqlPath error:nil];</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // 打开数据库需要使用一下函数</div><div class="line">    // 第一个参数是数据库的路径（因为需要的是C语言的字符串，而不是NSString所以必须进行转换）</div><div class="line">    // 第二个参数是指向指针的指针</div><div class="line">    sqlite3_open([sqlPath UTF8String], &amp;db);</div><div class="line"></div><div class="line">    return db;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>原生的 SQLite API 在使用上相当不友好，在使用时，非常不便。因此产生了很多用 SQLite API 进行封装的开源库。<a href="https://github.com/ccgus/fmdb" target="_blank" rel="external">FMDB</a> 就是其中使用最为广泛的一个。</p>
+<h2 id="FMDB"><a href="#FMDB" class="headerlink" title="FMDB"></a>FMDB</h2><p><a href="https://github.com/ccgus/fmdb" target="_blank" rel="external">FMDB</a> 有三个主要的类：</p>
+<ul>
+<li>FMDatabase – 表示一个单独的SQLite数据库。 用来执行SQLite的命令。</li>
+<li>FMResultSet – 表示FMDatabase执行查询后结果集</li>
+<li>FMDatabaseQueue – 如果你想在多线程中执行多个查询或更新，你应该使用该类。这是线程安全的。</li>
+</ul>
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@&quot;tmp.db&quot;];</div><div class="line">FMDatabase *db = [FMDatabase databaseWithPath:path];</div></pre></td></tr></table></figure>
+<ul>
+<li>传入数据库名，创建数据库。当该文件不存在时，FMDB 会自行创建一个。</li>
+<li>如果你传入的参数是空串：@”” ，则 FMDB 会在临时文件目录下创建这个数据库。数据库连接关闭，数据库就会被删除。</li>
+<li>如果你传入的参数是 NULL，则它会建立一个在内存中的数据库。数据库连接关闭，数据库就会被删除。</li>
+</ul>
+<h3 id="打开关闭数据库"><a href="#打开关闭数据库" class="headerlink" title="打开关闭数据库"></a>打开关闭数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">if (![db open]) &#123;</div><div class="line">    db = nil;</div><div class="line">    return;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// some operation</div><div class="line">// ...</div><div class="line"></div><div class="line">[db close];</div></pre></td></tr></table></figure>
+<p>如果打开失败，可能是权限不足或者资源不足。通常进行数据库操作之后，需要调用 close 方法来关闭数据库。</p>
+<h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p>FMDB 中除了 Select 操作之外，其它的都是更新操作。包含 CREATE, UPDATE, INSERT, ALTER, COMMIT, BEGIN, DETACH, DELETE, DROP, END, EXPLAIN, VACUUM, and REPLACE 等等。</p>
+<p>更新操作使用 executeUpdate 方法，举个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *sql = @&quot;insert into User (name, password) values (?, ?)&quot;;</div><div class="line">[db executeUpdate:sql, user.name, user.password];</div></pre></td></tr></table></figure>
+<p>这里需要注意的是，参数必须是 NSObject 的子类，所以象 int,double,bool 这种基本类型，需要封装成对应的包装类才行，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 错误，42 不能作为参数</div><div class="line">[db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, 42];</div><div class="line">// 正确，将 42 封装成 NSNumber 类</div><div class="line">[db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, [NSNumber numberWithInt:42]];</div></pre></td></tr></table></figure>
+<h3 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">FMResultSet *s = [db executeQuery:@&quot;SELECT * FROM myTable&quot;];</div><div class="line">while ([s next]) &#123;</div><div class="line">    //retrieve values for each record</div><div class="line">&#125;</div><div class="line"></div><div class="line">FMResultSet *s = [db executeQuery:@&quot;SELECT COUNT(*) FROM myTable&quot;];</div><div class="line">if ([s next]) &#123;</div><div class="line">    int totalCount = [s intForColumnIndex:0];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果集 FMResultSet 类似于 Android 中的 Cursor，Cursor 用完之后一定要关闭，但是在 iOS 的通常情况下，并不需要关闭 FMResultSet，因为相关的数据库关闭时，FMResultSet 也会被自动关闭。要注意的是，即使操作结果只有一行，也需要先调用 FMResultSet 的 next 方法。</p>
+<p>FMDB 提供如下多个方法来获取不同类型的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">intForColumn:</div><div class="line">longForColumn:</div><div class="line">longLongIntForColumn:</div><div class="line">boolForColumn:</div><div class="line">doubleForColumn:</div><div class="line">stringForColumn:</div><div class="line">dateForColumn:</div><div class="line">dataForColumn:</div><div class="line">dataNoCopyForColumn:</div><div class="line">UTF8StringForColumnIndex:</div><div class="line">objectForColumn:</div></pre></td></tr></table></figure>
+<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><p>关于 FMDatabase，要注意一点：<strong>不能在多个线程中共享一个 FMDatabase 对象并且在多个线程中同时使用</strong>，这个类本身不是线程安全的，这样使用会造成数据混乱等问题。</p>
+<p>多线程操作数据库需要使用 <strong>FMDatabaseQueue</strong> 来保证线程安全。</p>
+<p>使用 FMDatabaseQueue 很简单，首先用一个数据库文件地址来初使化 FMDatabaseQueue，然后就可以将一个闭包 (也就是上文我们说过的block) 传入 inDatabase 方法中。<br>在闭包中操作数据库，而不直接参与 FMDatabase 的管理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">// 创建，最好放在一个单例的类中</div><div class="line">FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:aPath];</div><div class="line"></div><div class="line">// 使用</div><div class="line">[queue inDatabase:^(FMDatabase *db) &#123;</div><div class="line">    [db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, [NSNumber numberWithInt:1]];</div><div class="line">    [db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, [NSNumber numberWithInt:2]];</div><div class="line">    [db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, [NSNumber numberWithInt:3]];</div><div class="line"></div><div class="line">    FMResultSet *rs = [db executeQuery:@&quot;select * from foo&quot;];</div><div class="line">    while ([rs next]) &#123;</div><div class="line">        // …</div><div class="line">    &#125;</div><div class="line">&#125;];</div><div class="line"></div><div class="line">// 如果要支持事务</div><div class="line">[queue inTransaction:^(FMDatabase *db, BOOL *rollback) &#123;</div><div class="line">    [db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, [NSNumber numberWithInt:1]];</div><div class="line">    [db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, [NSNumber numberWithInt:2]];</div><div class="line">    [db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, [NSNumber numberWithInt:3]];</div><div class="line"></div><div class="line">    if (whoopsSomethingWrongHappened) &#123;</div><div class="line">        *rollback = YES;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    // etc…</div><div class="line">    [db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, [NSNumber numberWithInt:4]];</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<h3 id="数据库查看工具"><a href="#数据库查看工具" class="headerlink" title="数据库查看工具"></a>数据库查看工具</h3><p>推荐一个开源的数据库工具：<a href="http://sqlitebrowser.org/" target="_blank" rel="external">SqliteBrowser</a>, DB Browser for SQLite。</p>
+<h1 id="CocoaPods"><a href="#CocoaPods" class="headerlink" title="CocoaPods"></a>CocoaPods</h1><p>CocoaPods 是 iOS 的依赖管理工具，用于管理导入的第三方库，就类似于Android中Maven，Gradle等。CocoaPods的安装详见唐巧的<a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="external">这篇博客</a>。</p>
+<p>这里摘抄一下文章中关于CocoaPods的使用部分。</p>
+<p>使用时需要新建一个名为 Podfile 的文件，以如下格式，将依赖的库名字依次列在文件中即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">platform :ios</div><div class="line">pod &apos;JSONKit&apos;,       &apos;~&gt; 1.4&apos;</div><div class="line">pod &apos;Reachability&apos;,  &apos;~&gt; 3.0.0&apos;</div><div class="line">pod &apos;ASIHTTPRequest&apos;</div><div class="line">pod &apos;RegexKitLite&apos;</div></pre></td></tr></table></figure>
+<p>前面是第三方库的名称，后面是版本号。</p>
+<p>然后你将编辑好的 Podfile 文件放到你的项目根目录中，执行如下命令即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd &quot;your project home&quot;</div><div class="line">pod install</div></pre></td></tr></table></figure>
+<p>现在，你的所有第三方库都已经下载完成并且设置好了编译参数和依赖，你只需要记住如下 2 点即可：</p>
+<ul>
+<li><p>使用 CocoaPods 生成的 .xcworkspace 文件来打开工程，而不是以前的 .xcodeproj 文件。</p>
+</li>
+<li><p>每次更改了 Podfile 文件，你需要重新执行一次 pod update 命令。</p>
+</li>
+</ul>
+<h1 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h1><p>Xcode 的 Debug 和 Android Studio 的基本操作类似，最大的不同应该就是在调试参数值上使用 LLDB。</p>
+<h2 id="BreakPoint"><a href="#BreakPoint" class="headerlink" title="BreakPoint"></a>BreakPoint</h2><p>Xcode中打断点和AS中一样，点击行数，生成一个右箭头的断点，点击拖拽取消断点。</p>
+<h3 id="Zombie-Objects（僵尸对象）"><a href="#Zombie-Objects（僵尸对象）" class="headerlink" title="Zombie Objects（僵尸对象）"></a>Zombie Objects（僵尸对象）</h3><p>Enable NSZombie Objects可能是整个Xcode开发环境中最有用的调试技巧。这个技巧非常非常容易追踪到重复释放的问题。该技巧会以非常简洁的方式打印指出重复释放的类和该类的内存地址。</p>
+<p>开启方式:首先打开Edit Scheme(点击左上角显示项目名的按钮处)，然后选择Diagnostics选项卡，勾选Zombie Objects选项。</p>
+<h3 id="Global-BreakPoint（全局断点"><a href="#Global-BreakPoint（全局断点" class="headerlink" title="Global BreakPoint（全局断点)"></a>Global BreakPoint（全局断点)</h3><p>开启方式:工程切换到异常浏览窗口(断电管理视图)，点击下方左侧的Add Breakpoint按钮，然后选择Add Exception Breakpoint确保可以捕获所有异常。</p>
+<h3 id="Condational-Breakpoints（条件断点）"><a href="#Condational-Breakpoints（条件断点）" class="headerlink" title="Condational Breakpoints（条件断点）"></a>Condational Breakpoints（条件断点）</h3><p>添加条件断点和AS的一样。</p>
+<p>添加方式：添加一个普通断点，然后右键点击断点选择 Edit Breakpoint，这时就打开了一个断点编辑器，你可以在这里设置断点条件（以及一些其他的断点设置），然后选择Done。</p>
+<h2 id="LLDB调试基本命令"><a href="#LLDB调试基本命令" class="headerlink" title="LLDB调试基本命令"></a>LLDB调试基本命令</h2><p>完整的LLDB命令见<a href="http://lldb.llvm.org/lldb-gdb.html" target="_blank" rel="external">官方文档</a>，这里介绍几个常用的命令。LLDB的窗口开关在Xcode的右下角，点击打开。</p>
+<h3 id="p和po"><a href="#p和po" class="headerlink" title="p和po"></a>p和po</h3><p>在调试器中最常用到的命令是p（用于输出基本类型）或者po（用于输出 Objective-C 对象）</p>
+<p>输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">po [oneday year]</div></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2016</div></pre></td></tr></table></figure></p>
+<p>输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p [oneday year]</div></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(NSInteger) $8 = 2016</div></pre></td></tr></table></figure></p>
+<p>可以看到，输出信息中带有的$1、$2的字样。实际上，我们每次查询的结果会保存在一些持续变量中($[0-9]+)，这样你可以在后面的查询中直接使用这些值。比如现在我接下来要重新取回$8的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">po $8</div></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2016</div></pre></td></tr></table></figure></p>
+<h3 id="expr"><a href="#expr" class="headerlink" title="expr"></a>expr</h3><p>可以在调试时动态执行指定表达式，并将结果打印出来。常用于在调试过程中修改变量的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">expr a=2</div></pre></td></tr></table></figure>
+<p>你会看到如下的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(int) $0 = 2</div></pre></td></tr></table></figure></p>
+<p>很明显可以看出，变量a的值被改变。 除此之外，还可以使用这个命令新声明一个变量对象，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">expr int $b=2</div><div class="line">p $b</div></pre></td></tr></table></figure>
+<p>下面的命令用于输出新声明对象的值。（注意，对象名前要加$）</p>
+<h3 id="call"><a href="#call" class="headerlink" title="call"></a>call</h3><p>call即是调用的意思。其实上述的po和p也有调用的功能。因此一般只在不需要显示输出，或是方法无返回值时使用call。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">call [self.view setBackgroundColor:[UIColor redColor]]</div></pre></td></tr></table></figure>
+<p>继续运行程序，看看view的背景颜色是不是变成红色的了！在调试的时候灵活运用call命令可以起到事半功倍的作用。</p>
+<h3 id="bt"><a href="#bt" class="headerlink" title="bt"></a>bt</h3><p>打印调用堆栈，加all可打印所有thread的堆栈。不详细举例说明，感兴趣的朋友可以自己试试。</p>
+<h1 id="Xcode快捷键"><a href="#Xcode快捷键" class="headerlink" title="Xcode快捷键"></a>Xcode快捷键</h1><h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h2><ul>
+<li>快速帮助: 在类或者方法名上执行Option + Left-click操作</li>
+<li>查看Apple文档：command + shift +0（zero）</li>
+</ul>
+<h2 id="定位文件位置"><a href="#定位文件位置" class="headerlink" title="定位文件位置"></a>定位文件位置</h2><ul>
+<li>快速定位当前类在项目文件中的位置：command + shift + J</li>
+<li>切换.m.h文件：Command + control+ 上下箭头</li>
+<li>前进后退上次打开的文件：Command + control+ 左右箭头</li>
+</ul>
+<h2 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h2><ul>
+<li>构建应用程序: Command + B</li>
+<li>运行App: Command + R</li>
+</ul>
+<h2 id="快速定位方法"><a href="#快速定位方法" class="headerlink" title="快速定位方法"></a>快速定位方法</h2><ul>
+<li>快速打开类或者方法: Command + Shift + O，支持首字母搜索</li>
+<li>在当前文件中跳转:Control+6</li>
+<li>搜索文件中的关键字:Command+Shift+F</li>
+</ul>
+<h2 id="面板操作"><a href="#面板操作" class="headerlink" title="面板操作"></a>面板操作</h2><ul>
+<li>辅助编辑器中打开文件:在项目导航器中选中文件执行Option+左键点击操作</li>
+<li>工程导航器:Command+1~8</li>
+<li>显示/隐藏导航器面板:Command+0</li>
+<li>隐藏/打开Toolbar：command+option+T</li>
+<li>隐藏/打开Debug：command+option+Y</li>
+</ul>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><ul>
+<li>选中的代码 + command+[ :向左位移</li>
+<li>选中的代码 + command+]: 向右位移</li>
+<li>选中的代码 + command+option+[ :向上位移</li>
+<li>选中的代码 + command+option+]:向下位移</li>
+</ul>
+<h1 id="iOS资料推荐"><a href="#iOS资料推荐" class="headerlink" title="iOS资料推荐"></a>iOS资料推荐</h1><ul>
+<li>官方API文档：<a href="https://developer.apple.com/reference?language=objc" target="_blank" rel="external">https://developer.apple.com/reference?language=objc</a></li>
+<li>官方示例代码：<a href="https://developer.apple.com/library/prerelease/content/navigation/#section=Platforms&amp;topic=iOS" target="_blank" rel="external">https://developer.apple.com/library/prerelease/content/navigation/#section=Platforms&amp;topic=iOS</a></li>
+<li>唐巧：<a href="http://blog.devtang.com/" target="_blank" rel="external">http://blog.devtang.com/</a></li>
+<li>王巍：<a href="https://onevcat.com/" target="_blank" rel="external">https://onevcat.com/</a></li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://github.com/qinjx/30min_guides/blob/master/ios.md" target="_blank" rel="external">https://github.com/qinjx/30min_guides/blob/master/ios.md</a></li>
+<li><a href="https://github.com/oa414/ios-good-practices/blob/master/TRANSLATION-CN.md" target="_blank" rel="external">https://github.com/oa414/ios-good-practices/blob/master/TRANSLATION-CN.md</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/25/x509trustmanager-alert/" rel="next" title="关于X509TrustManager的安全警告">
+                <i class="fa fa-chevron-left"></i> 关于X509TrustManager的安全警告
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/10/ios-basic/"
+           data-title="iOS从入门到放弃(误)" data-url="http://willyan.me/2016/08/10/ios-basic/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xpypn.com1.z0.glb.clouddn.com/image/will.jpg"
+               alt="WillYan" />
+          <p class="site-author-name" itemprop="name">WillYan</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Objective-C-基础语法"><span class="nav-number">1.</span> <span class="nav-text">Objective-C 基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HelloWorld"><span class="nav-number">1.1.</span> <span class="nav-text">HelloWorld</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用入口"><span class="nav-number">1.1.1.</span> <span class="nav-text">应用入口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息传递（方法调用）"><span class="nav-number">1.2.</span> <span class="nav-text">消息传递（方法调用）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不带参数"><span class="nav-number">1.2.1.</span> <span class="nav-text">不带参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带一个参数"><span class="nav-number">1.2.2.</span> <span class="nav-text">带一个参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带多个参数"><span class="nav-number">1.2.3.</span> <span class="nav-text">带多个参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息嵌套"><span class="nav-number">1.2.4.</span> <span class="nav-text">消息嵌套</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.3.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#int-与-NSInteger"><span class="nav-number">1.3.1.</span> <span class="nav-text">int 与 NSInteger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bool-与-BOOL"><span class="nav-number">1.3.2.</span> <span class="nav-text">bool 与 BOOL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#float-与-CGFloat"><span class="nav-number">1.3.3.</span> <span class="nav-text">float 与 CGFloat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSString"><span class="nav-number">1.3.4.</span> <span class="nav-text">NSString</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSNumber"><span class="nav-number">1.3.5.</span> <span class="nav-text">NSNumber</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器"><span class="nav-number">1.4.</span> <span class="nav-text">容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NSArray"><span class="nav-number">1.4.1.</span> <span class="nav-text">NSArray</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSMutableArray"><span class="nav-number">1.4.2.</span> <span class="nav-text">NSMutableArray</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSDictionary"><span class="nav-number">1.4.3.</span> <span class="nav-text">NSDictionary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSMutableDictionary"><span class="nav-number">1.4.4.</span> <span class="nav-text">NSMutableDictionary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印日志"><span class="nav-number">1.5.</span> <span class="nav-text">打印日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">1.6.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#interface-与-implementation"><span class="nav-number">1.6.1.</span> <span class="nav-text">@interface 与 @implementation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#property-与-synthesize"><span class="nav-number">1.6.2.</span> <span class="nav-text">@property 与 @synthesize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例方法"><span class="nav-number">1.6.3.</span> <span class="nav-text">实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类方法"><span class="nav-number">1.6.4.</span> <span class="nav-text">类方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">1.7.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协议-Protocol（接口回调）"><span class="nav-number">1.8.</span> <span class="nav-text">协议 Protocol（接口回调）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol的定义"><span class="nav-number">1.8.1.</span> <span class="nav-text">Protocol的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol的继承"><span class="nav-number">1.8.2.</span> <span class="nav-text">Protocol的继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol的实现"><span class="nav-number">1.8.3.</span> <span class="nav-text">Protocol的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类-Category"><span class="nav-number">1.9.</span> <span class="nav-text">分类 Category</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#块-block"><span class="nav-number">1.10.</span> <span class="nav-text">块 block</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#block的定义格式"><span class="nav-number">1.10.1.</span> <span class="nav-text">block的定义格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#布局和控件"><span class="nav-number">2.</span> <span class="nav-text">布局和控件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布局"><span class="nav-number">2.1.</span> <span class="nav-text">布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控件"><span class="nav-number">2.2.</span> <span class="nav-text">控件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UIView"><span class="nav-number">2.2.1.</span> <span class="nav-text">UIView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UILabel-文本框"><span class="nav-number">2.2.2.</span> <span class="nav-text">UILabel 文本框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIImageView-图片"><span class="nav-number">2.2.3.</span> <span class="nav-text">UIImageView 图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIButton-按钮"><span class="nav-number">2.2.4.</span> <span class="nav-text">UIButton 按钮</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画-Core-Animation"><span class="nav-number">3.</span> <span class="nav-text">动画 Core Animation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行动画"><span class="nav-number">3.1.</span> <span class="nav-text">执行动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转场动画"><span class="nav-number">3.2.</span> <span class="nav-text">转场动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-动画"><span class="nav-number">3.3.</span> <span class="nav-text">Spring 动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Keyframes-动画"><span class="nav-number">3.4.</span> <span class="nav-text">Keyframes 动画</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程-GCD"><span class="nav-number">4.</span> <span class="nav-text">多线程 GCD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络请求"><span class="nav-number">5.</span> <span class="nav-text">网络请求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AFNetworking"><span class="nav-number">5.1.</span> <span class="nav-text">AFNetworking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDWebImage"><span class="nav-number">5.2.</span> <span class="nav-text">SDWebImage</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据存储"><span class="nav-number">6.</span> <span class="nav-text">数据存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#沙盒机制"><span class="nav-number">6.1.</span> <span class="nav-text">沙盒机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plist文件"><span class="nav-number">6.2.</span> <span class="nav-text">plist文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSUserDefaults"><span class="nav-number">6.3.</span> <span class="nav-text">NSUserDefaults</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSKeyedArchiver"><span class="nav-number">6.4.</span> <span class="nav-text">NSKeyedArchiver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CoreData"><span class="nav-number">6.5.</span> <span class="nav-text">CoreData</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLite-3"><span class="nav-number">6.6.</span> <span class="nav-text">SQLite 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FMDB"><span class="nav-number">6.7.</span> <span class="nav-text">FMDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据库"><span class="nav-number">6.7.1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开关闭数据库"><span class="nav-number">6.7.2.</span> <span class="nav-text">打开关闭数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据更新"><span class="nav-number">6.7.3.</span> <span class="nav-text">数据更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据查询"><span class="nav-number">6.7.4.</span> <span class="nav-text">数据查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程安全"><span class="nav-number">6.7.5.</span> <span class="nav-text">线程安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库查看工具"><span class="nav-number">6.7.6.</span> <span class="nav-text">数据库查看工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CocoaPods"><span class="nav-number">7.</span> <span class="nav-text">CocoaPods</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Debug"><span class="nav-number">8.</span> <span class="nav-text">Debug</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BreakPoint"><span class="nav-number">8.1.</span> <span class="nav-text">BreakPoint</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Zombie-Objects（僵尸对象）"><span class="nav-number">8.1.1.</span> <span class="nav-text">Zombie Objects（僵尸对象）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Global-BreakPoint（全局断点"><span class="nav-number">8.1.2.</span> <span class="nav-text">Global BreakPoint（全局断点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Condational-Breakpoints（条件断点）"><span class="nav-number">8.1.3.</span> <span class="nav-text">Condational Breakpoints（条件断点）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LLDB调试基本命令"><span class="nav-number">8.2.</span> <span class="nav-text">LLDB调试基本命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#p和po"><span class="nav-number">8.2.1.</span> <span class="nav-text">p和po</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#expr"><span class="nav-number">8.2.2.</span> <span class="nav-text">expr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call"><span class="nav-number">8.2.3.</span> <span class="nav-text">call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bt"><span class="nav-number">8.2.4.</span> <span class="nav-text">bt</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Xcode快捷键"><span class="nav-number">9.</span> <span class="nav-text">Xcode快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#帮助"><span class="nav-number">9.1.</span> <span class="nav-text">帮助</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定位文件位置"><span class="nav-number">9.2.</span> <span class="nav-text">定位文件位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Build"><span class="nav-number">9.3.</span> <span class="nav-text">Build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速定位方法"><span class="nav-number">9.4.</span> <span class="nav-text">快速定位方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面板操作"><span class="nav-number">9.5.</span> <span class="nav-text">面板操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码块"><span class="nav-number">9.6.</span> <span class="nav-text">代码块</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS资料推荐"><span class="nav-number">10.</span> <span class="nav-text">iOS资料推荐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">11.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WillYan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"willyan"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

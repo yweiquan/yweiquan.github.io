@@ -1,0 +1,660 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="开源项目," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Volley下载Google I/O 2013 大会上发布的 Android 异步网络请求框架和图片加载框架。试用场景：适合数据量小，通信频繁的网络操作。
+1git clone https://android.googlesource.com/platform/frameworks/volley">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Volley 异步网络请求分析">
+<meta property="og:url" content="http://willyan.me/2014/05/12/analyse-volley/index.html">
+<meta property="og:site_name" content="Will's Central Perk">
+<meta property="og:description" content="Volley下载Google I/O 2013 大会上发布的 Android 异步网络请求框架和图片加载框架。试用场景：适合数据量小，通信频繁的网络操作。
+1git clone https://android.googlesource.com/platform/frameworks/volley">
+<meta property="og:image" content="http://7xpypn.com1.z0.glb.clouddn.com/image/volley-arch.png">
+<meta property="og:updated_time" content="2017-02-08T02:38:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Volley 异步网络请求分析">
+<meta name="twitter:description" content="Volley下载Google I/O 2013 大会上发布的 Android 异步网络请求框架和图片加载框架。试用场景：适合数据量小，通信频繁的网络操作。
+1git clone https://android.googlesource.com/platform/frameworks/volley">
+<meta name="twitter:image" content="http://7xpypn.com1.z0.glb.clouddn.com/image/volley-arch.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://willyan.me/2014/05/12/analyse-volley/"/>
+
+  <title> Volley 异步网络请求分析 | Will's Central Perk </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Will's Central Perk</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Volley 异步网络请求分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2014-05-12T02:16:57+08:00" content="2014-05-12">
+              2014-05-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/05/12/analyse-volley/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/12/analyse-volley/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Volley下载"><a href="#Volley下载" class="headerlink" title="Volley下载"></a>Volley下载</h1><p>Google I/O 2013 大会上发布的 Android 异步网络请求框架和图片加载框架。<br>试用场景：适合数据量小，通信频繁的网络操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://android.googlesource.com/platform/frameworks/volley</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="Volley架构"><a href="#Volley架构" class="headerlink" title="Volley架构"></a>Volley架构</h1><p><img src="http://7xpypn.com1.z0.glb.clouddn.com/image/volley-arch.png" alt="Volley Architect"></p>
+<p>如上官方给出的Volley架构图，蓝色为主线程，绿色为缓存线程，橙色是网络线程。</p>
+<p>总的来说，就是一个请求队列和三种线程，UI线程（1个），Cache线程（1个）和Network线程（默认是4个）。</p>
+<ul>
+<li>UI线程负责添加请求任务，执行任务结果；</li>
+<li>Cache线程负责检查缓存，命中后直接将任务结果分发到主线程；</li>
+<li>Network线程由多个任务线程（NetworkDispatcher）组成的，相当于一个大小为size的线程池，这些线程会同时启动，并持续的从任务队列中获取待执行的任务，任务执行完后会将结果分发到UI线程。</li>
+</ul>
+<p>先简介一下三个类的作用：</p>
+<ul>
+<li>Volley.java：Volley对外暴露的主类，通过 newRequestQueue(…) 函数新建并启动一个请求队列RequestQueue。</li>
+<li>Request：请求的抽象类。StringRequest、JsonRequest、ImageRequest 都是它的子类，表示某种类型的请求。可扩展性强。</li>
+<li>RequestQueue.java：请求队列，里面包含一个CacheDispatcher(用于处理走缓存请求的调度线程)、NetworkDispatcher数组(用于处理走网络请求的调度线程)，一个ResponseDelivery(返回结果分发接口)，通过 start() 函数启动时会启动CacheDispatcher和NetworkDispatchers。</li>
+</ul>
+<p>然后看创建请求队列方法内的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public static RequestQueue newRequestQueue(Context context, HttpStack stack) &#123;</div><div class="line">    ...</div><div class="line"></div><div class="line">    Network network = new BasicNetwork(stack);</div><div class="line"></div><div class="line">    RequestQueue queue = new RequestQueue(new DiskBasedCache(cacheDir), network);</div><div class="line">    queue.start();</div><div class="line"></div><div class="line">    return queue;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>看到这里，需要了解三个类的作用：</p>
+<ul>
+<li>HttpStack.java：处理HTTP请求，返回请求结果。目前Volley中有基于 HttpURLConnection 的 HurlStack 和 基于 Apache HttpClient 的HttpClientStack。</li>
+<li>Network.java：调用HttpStack处理请求，并将结果转换为可被ResponseDelivery处理的NetworkResponse。</li>
+<li>Cache.java：缓存请求结果，Volley默认使用的是基于sdcard缓存的DiskBasedCache。NetworkDispatcher得到请求结果后判断是否需要存储在 Cache，CacheDispatcher会从 Cache 中取缓存结果。</li>
+</ul>
+<p>创建Network需要HttpStatck，如果newRequestQueue传入的stack为null，API Level &gt;= 9，采用基于 HttpURLConnection 的 HurlStack；小于 9，采用基于 HttpClient 的 HttpClientStack。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">if (stack == null) &#123;</div><div class="line">    if (Build.VERSION.SDK_INT &gt;= 9) &#123;</div><div class="line">        stack = new HurlStack();</div><div class="line">    &#125; else &#123;</div><div class="line">        // Prior to Gingerbread, HttpUrlConnection was unreliable.</div><div class="line">        // See: http://android-developers.blogspot.com/2011/09/androids-http-clients.html</div><div class="line">        stack = new HttpClientStack(AndroidHttpClient.newInstance(userAgent));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>处理HTTP请求的HttpStatck也可以自定义，比如使用OKHTTP，具体可以参见我的另一篇文章<a href="http://willyan.me/2013/06/01/volley-okhttp/">使用OKHttp处理Volley的底层HTTP请求</a>。</p>
+<p>接下来启动所需的所有线程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public void start() &#123;</div><div class="line">    stop();  // Make sure any currently running dispatchers are stopped.</div><div class="line">    // Create the cache dispatcher and start it.</div><div class="line">    mCacheDispatcher = new CacheDispatcher(mCacheQueue, mNetworkQueue, mCache, mDelivery);</div><div class="line">    mCacheDispatcher.start();</div><div class="line"></div><div class="line">    // Create network dispatchers (and corresponding threads) up to the pool size.</div><div class="line">    for (int i = 0; i &lt; mDispatchers.length; i++) &#123;</div><div class="line">        NetworkDispatcher networkDispatcher = new NetworkDispatcher(mNetworkQueue, mNetwork,</div><div class="line">                mCache, mDelivery);</div><div class="line">        mDispatchers[i] = networkDispatcher;</div><div class="line">        networkDispatcher.start();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>CacheDispatcher.java：继承自Thread，用于调度处理「缓存请求」。启动后会不断从缓存请求队列中取请求处理，队列为空则等待，请求处理结束则将结果传递给ResponseDelivery去执行后续处理。当结果未缓存过、缓存失效或缓存需要刷新的情况下，该请求都需要重新进入NetworkDispatcher去调度处理。</p>
+</li>
+<li><p>NetworkDispatcher.java：继承自Thread，用于调度处理「网络请求」。启动后会不断从网络请求队列中取请求处理，队列为空则等待，请求处理结束则将结果传递给ResponseDelivery去执行后续处理，并判断结果是否要进行缓存。</p>
+</li>
+<li><p>ResponseDelivery.java：分发结果的interface，postResponse以及postError。</p>
+</li>
+</ul>
+<p>接下来再回头看一下Volley的架构图。</p>
+<ul>
+<li>第一步：把请求加入缓存队列</li>
+<li>第二步：「缓存调度线程」CacheDispatcher从缓存队列中取出一个请求，如果缓存命中，就读取缓存响应并解析，然后将结果返回到主线程</li>
+<li>第三步：缓存未命中，请求被加入网络请求队列，「网络调度线程」NetworkDispatcher轮询取出请求，HTTP请求传输，解析响应，写入缓存，然后将结果返回到主线程</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/开源项目/" rel="tag">#开源项目</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/03/27/android-decompile/" rel="next" title="反编译">
+                <i class="fa fa-chevron-left"></i> 反编译
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/06/19/git-remind/" rel="prev" title="Git 语法备忘">
+                Git 语法备忘 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/05/12/analyse-volley/"
+           data-title="Volley 异步网络请求分析" data-url="http://willyan.me/2014/05/12/analyse-volley/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xpypn.com1.z0.glb.clouddn.com/image/will.jpg"
+               alt="WillYan" />
+          <p class="site-author-name" itemprop="name">WillYan</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Volley下载"><span class="nav-number">1.</span> <span class="nav-text">Volley下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Volley架构"><span class="nav-number">2.</span> <span class="nav-text">Volley架构</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WillYan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"willyan"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

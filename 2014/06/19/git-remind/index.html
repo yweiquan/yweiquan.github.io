@@ -1,0 +1,679 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="git," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Git基础配置ssh-keygen -t rsa -C &amp;quot;willyan0820@gmail.com&amp;quot;    # 生成ssh keygen
+pbcopy &amp;lt; ~/.ssh/id_rsa.pub                      # 复制到剪贴板
+
+git config --global user.name &amp;quot;Will&amp;quot;
+git config -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 语法备忘">
+<meta property="og:url" content="http://willyan.me/2014/06/19/git-remind/index.html">
+<meta property="og:site_name" content="Will's Central Perk">
+<meta property="og:description" content="Git基础配置ssh-keygen -t rsa -C &amp;quot;willyan0820@gmail.com&amp;quot;    # 生成ssh keygen
+pbcopy &amp;lt; ~/.ssh/id_rsa.pub                      # 复制到剪贴板
+
+git config --global user.name &amp;quot;Will&amp;quot;
+git config -">
+<meta property="og:updated_time" content="2017-02-08T02:41:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git 语法备忘">
+<meta name="twitter:description" content="Git基础配置ssh-keygen -t rsa -C &amp;quot;willyan0820@gmail.com&amp;quot;    # 生成ssh keygen
+pbcopy &amp;lt; ~/.ssh/id_rsa.pub                      # 复制到剪贴板
+
+git config --global user.name &amp;quot;Will&amp;quot;
+git config -">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://willyan.me/2014/06/19/git-remind/"/>
+
+  <title> Git 语法备忘 | Will's Central Perk </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Will's Central Perk</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git 语法备忘
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2014-06-19T01:27:02+08:00" content="2014-06-19">
+              2014-06-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/06/19/git-remind/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/06/19/git-remind/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Git基础配置"><a href="#Git基础配置" class="headerlink" title="Git基础配置"></a>Git基础配置</h2><pre><code>ssh-keygen -t rsa -C &quot;willyan0820@gmail.com&quot;    # 生成ssh keygen
+pbcopy &lt; ~/.ssh/id_rsa.pub                      # 复制到剪贴板
+
+git config --global user.name &quot;Will&quot;
+git config --global user.email &quot;willyan0820@gmail.com&quot;
+
+git config --global core.autocrlf input         # For Mac 换行符
+git config --global core.autocrlf input         # For Windows 换行符
+git config core.safecrlf false                  # 不再提示换行符
+
+git config http.postBuffer 524288000            # 提高push限制
+git config --list                               # 查看配置
+</code></pre><a id="more"></a>
+<p>##Git编辑常用<br>    git add  <file><br>    git add .               # 将所有修改过的工作文件提交暂存区<br>    git add -A              # 将所有修改过、删除的、新增的的工作文件提交暂存区</file></p>
+<pre><code>git checkout -- &lt;file&gt;  # 还没有git add之前，抛弃修改某文件
+git checkout .
+
+git reset &lt;file&gt;        # git add之后，将某文件从暂存区恢复到工作文件
+git reset -- .  
+git reset --hard        # 将修改过的文件从暂存区恢复到工作文件，本地不会有任何修改，不管是否git add
+git reset --hard HEAD^  # 撤销最近一次的提交记录，最近一次的commit记录将会从git log中删除
+
+
+git commit -m &quot;comments&quot;
+git commit -am &quot;comments&quot;   # git add, git rm和git commit等操作都合并在一起做
+git commit --amend          # 修改最后一次提交记录
+
+git revert &lt;commit id&gt;      # 恢复某次commit记录 恢复动作本身也创建了一次提交记录
+git revert HEAD             # 恢复最后一次提交的状态 恢复动作本身也创建了一次提交记录
+</code></pre><h2 id="Git分支管理"><a href="#Git分支管理" class="headerlink" title="Git分支管理"></a>Git分支管理</h2><pre><code>git branch -a
+git branch &lt;new branch&gt;
+
+git checkout &lt;branch&gt;
+git checkout -b &lt;new branch&gt;             # 创建并切换到新分支
+git checkout -b &lt;new_branch&gt; &lt;branchA&gt;   # 切换到基于branchA创建的新分支
+
+git branch -d &lt;branch&gt;                   # 删除某个分支
+git branch -D &lt;branch&gt;                   # 强制删除某个分支，未被合并的分支被删除的时候需要强制
+
+git merge &lt;branch&gt;                       # 将branch分支合并到当前分支
+git rebase &lt;branch&gt;                      # 将branch分支在当前分支重新提交一遍
+
+    git checkout dev                     # 在dev分支
+    git rebase master                    # 把master分支的修改同步到dev分支 这一步一般会有冲突
+        git add .
+        git rebase --continue            # 解决reabse冲突之后 继续rebase
+        git rebase --abort               # 放弃rebase
+    git checkout master                  # 切到master分支
+    git merge dev                        # 把dev分支合并到master分支
+
+git tag                                  # 查看全部标签
+git tag -a TAG_NAME -m &apos;TAG NOTE&apos;        # 打标签
+git checkout TAG_NAME                    # 切换到标签
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/05/12/analyse-volley/" rel="next" title="Volley 异步网络请求分析">
+                <i class="fa fa-chevron-left"></i> Volley 异步网络请求分析
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/06/25/read-dark-time/" rel="prev" title="暗时间">
+                暗时间 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/06/19/git-remind/"
+           data-title="Git 语法备忘" data-url="http://willyan.me/2014/06/19/git-remind/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xpypn.com1.z0.glb.clouddn.com/image/will.jpg"
+               alt="WillYan" />
+          <p class="site-author-name" itemprop="name">WillYan</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git基础配置"><span class="nav-number">1.</span> <span class="nav-text">Git基础配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git分支管理"><span class="nav-number">2.</span> <span class="nav-text">Git分支管理</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WillYan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"willyan"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,682 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="优化,内存," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="我们知道，当一个对象没有被任何其他对象所引用的时候，它就能够被JVM回收。那么，为什么内存会泄露？在一种应用场景中，Java堆内存中的长生命周期的对象持有短生命周期对象的强/软引用，尽管短生命周期对象已经不再需要，但是因为长生命周期对象持有它的引用而导致不能被回收，这就是Java中内存泄露的根本原因。
+至于什么情况下会发生OOM，在不同的Android版本有不同的表现：
+
+Android 2.x系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android内存优化操作">
+<meta property="og:url" content="http://willyan.me/2015/07/31/memory-optimize/index.html">
+<meta property="og:site_name" content="Will's Central Perk">
+<meta property="og:description" content="我们知道，当一个对象没有被任何其他对象所引用的时候，它就能够被JVM回收。那么，为什么内存会泄露？在一种应用场景中，Java堆内存中的长生命周期的对象持有短生命周期对象的强/软引用，尽管短生命周期对象已经不再需要，但是因为长生命周期对象持有它的引用而导致不能被回收，这就是Java中内存泄露的根本原因。
+至于什么情况下会发生OOM，在不同的Android版本有不同的表现：
+
+Android 2.x系">
+<meta property="og:updated_time" content="2017-02-08T02:43:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android内存优化操作">
+<meta name="twitter:description" content="我们知道，当一个对象没有被任何其他对象所引用的时候，它就能够被JVM回收。那么，为什么内存会泄露？在一种应用场景中，Java堆内存中的长生命周期的对象持有短生命周期对象的强/软引用，尽管短生命周期对象已经不再需要，但是因为长生命周期对象持有它的引用而导致不能被回收，这就是Java中内存泄露的根本原因。
+至于什么情况下会发生OOM，在不同的Android版本有不同的表现：
+
+Android 2.x系">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://willyan.me/2015/07/31/memory-optimize/"/>
+
+  <title> Android内存优化操作 | Will's Central Perk </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Will's Central Perk</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android内存优化操作
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-31T16:43:58+08:00" content="2015-07-31">
+              2015-07-31
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/31/memory-optimize/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/31/memory-optimize/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们知道，当一个对象没有被任何其他对象所引用的时候，它就能够被JVM回收。那么，为什么内存会泄露？在一种应用场景中，Java堆内存中的长生命周期的对象持有短生命周期对象的强/软引用，尽管短生命周期对象已经不再需要，但是因为长生命周期对象持有它的引用而导致不能被回收，这就是Java中内存泄露的根本原因。</p>
+<p>至于什么情况下会发生OOM，在不同的Android版本有不同的表现：</p>
+<ul>
+<li><p>Android 2.x系统，当dalvik allocated + external allocated + 新分配的大小 &gt;= dalvik heap 最大值时候就会发生OOM。其中bitmap是放于external中 。</p>
+</li>
+<li><p>Android 4.x系统，废除了external的计数器，类似bitmap的分配改到dalvik的java heap中申请，只要allocated + 新分配的内存 &gt;= dalvik heap 最大值的时候就会发生OOM（art运行环境的统计规则还是和dalvik保持一致）</p>
+</li>
+</ul>
+<p>本文主要谈谈在Android中内存泄露的检测与具体的优化操作。相关的理论知识在此不再阐述。</p>
+<a id="more"></a>
+<h1 id="内存泄露的检测"><a href="#内存泄露的检测" class="headerlink" title="内存泄露的检测"></a>内存泄露的检测</h1><hr>
+<p>强烈推荐Square公司开源的<a href="https://github.com/square/leakcanary" target="_blank" rel="external">LeakCanary</a>，它通过弱引用方式侦查Activity或对象的生命周期，若发现内存泄露自动dump Hprof文件，并通过Notification展示泄露路径。具体的使用方法见<a href="https://github.com/square/leakcanary" target="_blank" rel="external">Github</a>，或者我的<a href="http://willyan.me/2015/05/09/leakcanary/">这篇文章</a>。</p>
+<h1 id="具体优化操作"><a href="#具体优化操作" class="headerlink" title="具体优化操作"></a>具体优化操作</h1><hr>
+<p>当你拿到一份完整的项目代码，应该如何对其进行内存检查与优化？以下几点可供参考。</p>
+<h2 id="单例对象不要持有Activity对象"><a href="#单例对象不要持有Activity对象" class="headerlink" title="单例对象不要持有Activity对象"></a>单例对象不要持有Activity对象</h2><p>不正确使用单例模式是引起内存泄露的一个常见问题，单例对象在被初始化后将在 JVM 的整个生命周期中存在(以静态变量的方式)，如果单例对象持有外部对象的引用，那么这个外部对象将不能被 JVM 正常回收，导致内存泄露。</p>
+<h3 id="常见处理方案："><a href="#常见处理方案：" class="headerlink" title="常见处理方案："></a>常见处理方案：</h3><p>全局搜索” getInstance”，前面加空格，搜索结果即项目中所有单例的getInstance()方法。逐个检查单例类中是否持有对Activity的引用。（当然，这是建立在项目中单例getInstance的写法基础上的）</p>
+<p>比如针对getInstance(Context context)这类方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Context context;</div><div class="line">public static Instance getInstance(Context context) &#123;</div><div class="line">    this.context = context;</div><div class="line">    ...</div><div class="line">    return instance;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在仔细检查过该单例对Context的使用之后，建议修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Context context;</div><div class="line">public static Instance getInstance(Context context) &#123;</div><div class="line">    this.context = context.getApplicationContext();</div><div class="line">    ...</div><div class="line">    return instance;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="递归释放Activity资源"><a href="#递归释放Activity资源" class="headerlink" title="递归释放Activity资源"></a>递归释放Activity资源</h2><p>Activity泄漏会导致该Activity引用到的Bitmap、DrawingCache等无法释放，对内存造成大的压力，兜底回收是指对于已泄漏Activity，尝试回收其持有的资源，泄漏的仅仅是一个Activity空壳，从而降低对内存的压力。</p>
+<h3 id="常见处理方案"><a href="#常见处理方案" class="headerlink" title="常见处理方案"></a>常见处理方案</h3><p>在Activity onDestory时候从rootview开始，递归释放所有子view涉及的图片，背景，DrawingCache，监听器等等资源，让Activity成为一个不占资源的空壳，泄露了也不会导致图片资源被持有。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line">Drawable d = iv.getDrawable();</div><div class="line">if (d != null) &#123;</div><div class="line">    d.setCallback(null);</div><div class="line">&#125;        </div><div class="line">iv.setImageDrawable(null);</div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure>
+<h2 id="组件注册与注销的成对使用"><a href="#组件注册与注销的成对使用" class="headerlink" title="组件注册与注销的成对使用"></a>组件注册与注销的成对使用</h2><p>Android中BraodcastReceiver，ContentObserver，FileObserver，Cursor，Callback…以及EventBus等在Activity#onDestroy()或者某类生命周期结束之后一定要unregister或者close掉，否则这个Activity会被持有强引用，不会被内存回收。</p>
+<h3 id="常见处理方案：-1"><a href="#常见处理方案：-1" class="headerlink" title="常见处理方案："></a>常见处理方案：</h3><p>检查注册与注销的调用次数是否相等。针对不同组件的使用方法，有相应的检测方法。</p>
+<p>比如EventBus，可以全局搜索以下两句代码的调用次数是否相等，如果不等则说明EventBus存在没有正确注销的情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">EventBus.getDefault().register</div><div class="line"></div><div class="line">EventBus.getDefault().unregister</div></pre></td></tr></table></figure>
+<h2 id="谨慎使用非静态内部类"><a href="#谨慎使用非静态内部类" class="headerlink" title="谨慎使用非静态内部类"></a>谨慎使用非静态内部类</h2><p>Java中非静态的内部类会持有对外部类的引用。<br>这种情况在Android中常见于:</p>
+<p>1）Handler匿名内部类的非静态的实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Handler mHandler = new Handler()&#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2）调用setOnSthListener时直接new一个SthListener的匿名内部类等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">instance.setOnSthListener(new SthListener()&#123;</div><div class="line">    ...</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>等等…</p>
+<p>这类代码在项目中非常常见，因为匿名内部类用起来极其方便，却忽略了其带来的内存隐患。</p>
+<h3 id="常见处理方案：-2"><a href="#常见处理方案：-2" class="headerlink" title="常见处理方案："></a>常见处理方案：</h3><p>将匿名内部类改为静态的非匿名内部类，同时持有对外部类的弱引用WeakReference，以便调用外部类的非静态方法。具体代码处理可以参考<a href="http://willyan.me/2014/03/01/handler-memory-leak/">这篇文章</a>中对Handler的内存泄露的规避处理。</p>
+<h2 id="谨慎使用第三方Libraries"><a href="#谨慎使用第三方Libraries" class="headerlink" title="谨慎使用第三方Libraries"></a>谨慎使用第三方Libraries</h2><p>很多开源的Library代码都不是为移动网络环境而编写的，如果运用在移动设备上，这样的效率并不高。当你决定使用一个第三方Library的时候，你应该针对移动网络做繁琐的迁移与维护的工作。</p>
+<p>即使是针对Android而设计的Library，也可能是很危险的，因为每一个Library所做的事情都是不一样的。例如，其中一个Library使用的是nano protobufs, 而另外一个使用的是micro protobufs。那么这样，在你的app里面就有2种protobuf的实现方式。这样的冲突同样可能发生在输出日志，加载图片，缓存等等模块里面。</p>
+<p>同样不要陷入为了1个或者2个功能而导入整个library的陷阱。如果没有一个合适的库与你的需求相吻合，你应该考虑自己去实现，而不是导入一个大而全的解决方案。</p>
+<h2 id="考虑使用多进程"><a href="#考虑使用多进程" class="headerlink" title="考虑使用多进程"></a>考虑使用多进程</h2><p>通过把你的app组件切分成多个组件，运行在不同的进程中。这个技术必须谨慎使用，大多数app都不应该运行在多个进程中。因为如果使用不当，它会显著增加内存的使用，而不是减少。当你的app需要在后台运行与前台一样的大量的任务的时候，可以考虑使用这个技术。</p>
+<p>一个典型的例子是创建一个可以长时间后台播放的Music Player。如果整个app运行在一个进程中，当后台播放的时候，前台的那些UI资源也没有办法得到释放。类似这样的app可以切分成2个进程：一个用来操作UI，另外一个用来后台的Service.</p>
+<p>你可以通过在manifest文件中声明’android:process’属性来实现某个组件运行在另外一个进程的操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;service </div><div class="line">    android:name=&quot;.PlaybackService&quot;</div><div class="line">    android:process=&quot;:background&quot; /&gt;</div></pre></td></tr></table></figure>
+<h2 id="WebView的内存泄露"><a href="#WebView的内存泄露" class="headerlink" title="WebView的内存泄露"></a>WebView的内存泄露</h2><p>WebView的原生内存泄漏众所周知，建议另外启动一个进程专门运行 WebView。WebView 用完之后就把进程杀死。</p>
+<p>一般情况下，使用 WebView 的Activity，在生命周期结束onDestory的时候，需要主动调用 WebView.onPause()以及  WebView.destory()以便让系统释放 WebView 相关资源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">    @Override</div><div class="line">    protected void onPause() &#123;</div><div class="line">        mWebView.onPause();</div><div class="line">        super.onPause();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onDestroy() &#123;</div><div class="line">        mWebView.destroy();</div><div class="line">        super.onDestroy();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="谨慎使用依赖注入框架"><a href="#谨慎使用依赖注入框架" class="headerlink" title="谨慎使用依赖注入框架"></a>谨慎使用依赖注入框架</h2><p>使用类似Guice或者RoboGuice等framework injection包是很有效的，因为他们能够简化你的代码。</p>
+<p>然而，那些框架会通过扫描你的代码执行许多初始化的操作，这会导致你的代码需要大量的RAM来mapping代码，而且mapped pages会长时间的被保留在RAM中。</p>
+<h2 id="使用优化的数据容器"><a href="#使用优化的数据容器" class="headerlink" title="使用优化的数据容器"></a>使用优化的数据容器</h2><p>利用Android Framework里面优化过的容器类，例如SparseArray, SparseBooleanArray, 与 LongSparseArray。 通常的HashMap的实现方式更加消耗内存，因为它需要一个额外的实例对象来记录Mapping操作。另外，SparseArray更加高效在于他们避免了对key与value的autobox自动装箱，并且避免了装箱后的解箱。</p>
+<p>以及，非必要的情况下，尽量避免在Android中使用枚举。</p>
+<h2 id="优化字符串拼接"><a href="#优化字符串拼接" class="headerlink" title="优化字符串拼接"></a>优化字符串拼接</h2><p>这一点比较简单，减少字符串使用加号拼接，改为使用StringBuilder。</p>
+<h2 id="减少不必要或不合理的对象"><a href="#减少不必要或不合理的对象" class="headerlink" title="减少不必要或不合理的对象"></a>减少不必要或不合理的对象</h2><p>例如在onDraw中应减少对象申请；循环中应避免不断申请局部变量等，尽量重用。</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><hr>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=400656149&amp;idx=1&amp;sn=122b4f4965fafebf78ec0b4fce2ef62a&amp;scene=1&amp;srcid=1218U6fScpijJAJKroGsFjve&amp;key=ac89cba618d2d9767e7277886da092c05a80ce6a0291cca91f651de7ccc6ca0589bedc98a1429e2adc4a7af80cd437ee&amp;ascene=0&amp;uin=MjIxMzE2MTE4Mg%3D%3D&amp;devicetype=iMac+MacBookPro11%2C1+OSX+OSX+10.10.5+build(14F27)&amp;version=11020012&amp;pass_ticket=DMgzpVpUWOBrl81xs4s7LTG4OEvY%2B2INNqCBML8s9%2FVjMWLcg5Pah3WiG4CfMMNM" target="_blank" rel="external">Android内存优化杂谈</a></li>
+<li><a href="http://hukai.me/android-training-course-in-chinese/performance/memory.html" target="_blank" rel="external">管理应用的内存</a></li>
+<li><a href="http://bugly.qq.com/blog/?p=884" target="_blank" rel="external">内存泄露从入门到精通三部曲之常见原因与用户实践</a> </li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/优化/" rel="tag">#优化</a>
+          
+            <a href="/tags/内存/" rel="tag">#内存</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/20/yalantis-guillotine-menu/" rel="next" title="Yalantis动画解析之闸刀菜单">
+                <i class="fa fa-chevron-left"></i> Yalantis动画解析之闸刀菜单
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/25/x509trustmanager-alert/" rel="prev" title="关于X509TrustManager的安全警告">
+                关于X509TrustManager的安全警告 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/07/31/memory-optimize/"
+           data-title="Android内存优化操作" data-url="http://willyan.me/2015/07/31/memory-optimize/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xpypn.com1.z0.glb.clouddn.com/image/will.jpg"
+               alt="WillYan" />
+          <p class="site-author-name" itemprop="name">WillYan</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内存泄露的检测"><span class="nav-number">1.</span> <span class="nav-text">内存泄露的检测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体优化操作"><span class="nav-number">2.</span> <span class="nav-text">具体优化操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单例对象不要持有Activity对象"><span class="nav-number">2.1.</span> <span class="nav-text">单例对象不要持有Activity对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见处理方案："><span class="nav-number">2.1.1.</span> <span class="nav-text">常见处理方案：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归释放Activity资源"><span class="nav-number">2.2.</span> <span class="nav-text">递归释放Activity资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见处理方案"><span class="nav-number">2.2.1.</span> <span class="nav-text">常见处理方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件注册与注销的成对使用"><span class="nav-number">2.3.</span> <span class="nav-text">组件注册与注销的成对使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见处理方案：-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">常见处理方案：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谨慎使用非静态内部类"><span class="nav-number">2.4.</span> <span class="nav-text">谨慎使用非静态内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见处理方案：-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">常见处理方案：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谨慎使用第三方Libraries"><span class="nav-number">2.5.</span> <span class="nav-text">谨慎使用第三方Libraries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#考虑使用多进程"><span class="nav-number">2.6.</span> <span class="nav-text">考虑使用多进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView的内存泄露"><span class="nav-number">2.7.</span> <span class="nav-text">WebView的内存泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谨慎使用依赖注入框架"><span class="nav-number">2.8.</span> <span class="nav-text">谨慎使用依赖注入框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用优化的数据容器"><span class="nav-number">2.9.</span> <span class="nav-text">使用优化的数据容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化字符串拼接"><span class="nav-number">2.10.</span> <span class="nav-text">优化字符串拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减少不必要或不合理的对象"><span class="nav-number">2.11.</span> <span class="nav-text">减少不必要或不合理的对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">3.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WillYan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"willyan"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

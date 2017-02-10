@@ -1,0 +1,674 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="动画," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Yalantis官网链接：How-we-developed-the-guillotine-menu-animation-for-Android
+
+Yalantis在Github上开源了很多非常酷炫的动画，包含Android和iOS的实现。可以到官网或者Dribbble欣赏其全部作品。
+本文就其中一个GuillotineMenu动画做解析，了解这类动画的开发思路，主要了解自定义Interpolat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yalantis动画解析之闸刀菜单">
+<meta property="og:url" content="http://willyan.me/2015/06/20/yalantis-guillotine-menu/index.html">
+<meta property="og:site_name" content="Will's Central Perk">
+<meta property="og:description" content="Yalantis官网链接：How-we-developed-the-guillotine-menu-animation-for-Android
+
+Yalantis在Github上开源了很多非常酷炫的动画，包含Android和iOS的实现。可以到官网或者Dribbble欣赏其全部作品。
+本文就其中一个GuillotineMenu动画做解析，了解这类动画的开发思路，主要了解自定义Interpolat">
+<meta property="og:image" content="http://7xpypn.com1.z0.glb.clouddn.com/gif%2Fguillotine-menu.gif">
+<meta property="og:image" content="http://7xpypn.com1.z0.glb.clouddn.com/image%2Fguillotine-interpolator-bounce.jpg">
+<meta property="og:image" content="http://7xpypn.com1.z0.glb.clouddn.com/image%2Fguillotine-interpolator-custom.jpg">
+<meta property="og:updated_time" content="2017-02-08T02:44:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Yalantis动画解析之闸刀菜单">
+<meta name="twitter:description" content="Yalantis官网链接：How-we-developed-the-guillotine-menu-animation-for-Android
+
+Yalantis在Github上开源了很多非常酷炫的动画，包含Android和iOS的实现。可以到官网或者Dribbble欣赏其全部作品。
+本文就其中一个GuillotineMenu动画做解析，了解这类动画的开发思路，主要了解自定义Interpolat">
+<meta name="twitter:image" content="http://7xpypn.com1.z0.glb.clouddn.com/gif%2Fguillotine-menu.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://willyan.me/2015/06/20/yalantis-guillotine-menu/"/>
+
+  <title> Yalantis动画解析之闸刀菜单 | Will's Central Perk </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Will's Central Perk</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Yalantis动画解析之闸刀菜单
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-06-20T10:14:50+08:00" content="2015-06-20">
+              2015-06-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/20/yalantis-guillotine-menu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/20/yalantis-guillotine-menu/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Yalantis官网链接：<a href="https://yalantis.com/blog/how-we-developed-the-guillotine-menu-animation-for-android/" target="_blank" rel="external">How-we-developed-the-guillotine-menu-animation-for-Android</a></p>
+</blockquote>
+<p>Yalantis在<a href="https://github.com/Yalantis" target="_blank" rel="external">Github</a>上开源了很多非常酷炫的动画，包含Android和iOS的实现。可以到<a href="https://yalantis.com/" target="_blank" rel="external">官网</a>或者<a href="https://dribbble.com/yalantis" target="_blank" rel="external">Dribbble</a>欣赏其全部作品。</p>
+<p>本文就其中一个GuillotineMenu动画做解析，了解这类动画的开发思路，主要了解自定义Interpolator插值器的实现。</p>
+<p><img src="http://7xpypn.com1.z0.glb.clouddn.com/gif%2Fguillotine-menu.gif" alt=""></p>
+<a id="more"></a>
+<h1 id="分解设计图"><a href="#分解设计图" class="headerlink" title="分解设计图"></a>分解设计图</h1><p>首先分解这个动画，可以将其分为两个部分：</p>
+<ul>
+<li>菜单View旋转打开，从-90°到0°，结束时菜单回弹</li>
+<li>菜单View旋转关闭，从0°到-90°，结束时ActionBar回弹</li>
+</ul>
+<p>可以看出来「旋转」是这两个动画的基础。</p>
+<h1 id="实现菜单View的旋转"><a href="#实现菜单View的旋转" class="headerlink" title="实现菜单View的旋转"></a>实现菜单View的旋转</h1><p>实现旋转要做两件事：1）找到旋转的中心；2）使用ObjectAnimation来做真正的旋转工作。</p>
+<p>旋转的中心是汉堡菜单按钮的中心，其实这里有两个大小与坐标位置都一模一样的菜单按钮，一个在ActionBar上，我们命名为openingView，另一个在菜单View上，命名为closingView。菜单View命名为mGuillotineView。</p>
+<p>初始化时算好mGuillotineView的旋转中心：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">private void setUpClosingView(final View closingView) &#123;</div><div class="line">        mGuillotineView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onGlobalLayout() &#123;</div><div class="line">                if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.JELLY_BEAN) &#123;</div><div class="line">                    mGuillotineView.getViewTreeObserver().removeOnGlobalLayoutListener(this);</div><div class="line">                &#125; else &#123;</div><div class="line">                    mGuillotineView.getViewTreeObserver().removeGlobalOnLayoutListener(this);</div><div class="line">                &#125;</div><div class="line">                mGuillotineView.setPivotX(calculatePivotX(closingView));</div><div class="line">                mGuillotineView.setPivotY(calculatePivotY(closingView));</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        closingView.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                close();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>同理也计算好mActionBarView的旋转中心。</p>
+<blockquote>
+<p>View#setPivotX() #setPivotY()方法设置好View旋转或者缩放时的中心点，默认是在View的重心位置。</p>
+</blockquote>
+<p>实现一般的旋转，可以使用nineold兼容库中的ObjectAnimator实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">private static final String ROTATION = &quot;rotation&quot;;</div><div class="line">private static final float GUILLOTINE_CLOSED_ANGLE = -90f;</div><div class="line">private static final float GUILLOTINE_OPENED_ANGLE = 0f;</div><div class="line">private static final int DEFAULT_DURATION = 625;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">    private ObjectAnimator buildOpeningAnimation() &#123;</div><div class="line">        ObjectAnimator rotationAnimator = initAnimator(ObjectAnimator.ofFloat(mGuillotineView, ROTATION, GUILLOTINE_CLOSED_ANGLE, GUILLOTINE_OPENED_ANGLE));</div><div class="line">        rotationAnimator.setDuration(mDuration);</div><div class="line">        return rotationAnimator;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>#实现菜单View的自由落体和回弹效果</p>
+<p>##Interpolator</p>
+<p>插值器的原理就是通过改变实际执行动画的时间点，提前/延迟执行默认的时间点来达到加速/减速的效果。</p>
+<p>先看看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public interface Interpolator extends TimeInterpolator &#123;</div><div class="line">    // A new interface, TimeInterpolator, was introduced for the new android.animation</div><div class="line">    // package. This older Interpolator interface extends TimeInterpolator so that users of</div><div class="line">    // the new Animator-based animations can use either the old Interpolator implementations or</div><div class="line">    // new classes that implement TimeInterpolator directly.</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所有的插值器都实现了Interpolator这个接口，而Interpolator又是继承自一个叫做TimeInterpolator的接口（从3.0开始，增加了TimeInterpolator这个接口，并把原先的Interpolator接口的抽象方法移到了其中，3.0后的Interpolator接口也就什么也没做，只是对父类改了个名字，达到向下兼容）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * A time interpolator defines the rate of change of an animation. This allows animations</div><div class="line"> * to have non-linear motion, such as acceleration and deceleration.</div><div class="line"> */</div><div class="line">public interface TimeInterpolator &#123;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Maps a value representing the elapsed fraction of an animation to a value that represents</div><div class="line">     * the interpolated fraction. This interpolated value is then multiplied by the change in</div><div class="line">     * value of an animation to derive the animated value at the current elapsed animation time.</div><div class="line">     *</div><div class="line">     * @param input A value between 0 and 1.0 indicating our current point</div><div class="line">     *        in the animation where 0 represents the start and 1.0 represents</div><div class="line">     *        the end</div><div class="line">     * @return The interpolation value. This value can be more than 1.0 for</div><div class="line">     *         interpolators which overshoot their targets, or less than 0 for</div><div class="line">     *         interpolators that undershoot their targets.</div><div class="line">     */</div><div class="line">    float getInterpolation(float input);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在Interpolator的实现类里面，都实现了一个getInterpolator(float input)的方法。传入参数是正常执行动画的时间点，返回值是用户真正想要它执行的时间点。传入参数是0~1，返回值一般也是0~1。（0~1）表示整段动画的过程。中间的0.2、0.3等小数表示在整个动画（原本是匀速的）中的位置，其实就是一个比值。</p>
+<p>简单点解释这个方法，就是「<strong>当要执行input的时间时，给它另外一个时间，让系统执行另外一个时间的效果</strong>」。</p>
+<h2 id="BounceInterpolator"><a href="#BounceInterpolator" class="headerlink" title="BounceInterpolator"></a>BounceInterpolator</h2><p>Android原生有一个BounceInterpolator，可以实现类似的回弹效果，但是回弹的效果太强。<br><img src="http://7xpypn.com1.z0.glb.clouddn.com/image%2Fguillotine-interpolator-bounce.jpg" alt=""></p>
+<p>对应坐标系看一下BounceInterpolator的源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class BounceInterpolator extends BaseInterpolator &#123;</div><div class="line">    public BounceInterpolator() &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static float bounce(float t) &#123;</div><div class="line">        return t * t * 8.0f;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public float getInterpolation(float t) &#123;</div><div class="line">        t *= 1.1226f;</div><div class="line">        if (t &lt; 0.3535f) return bounce(t);</div><div class="line">        else if (t &lt; 0.7408f) return bounce(t - 0.54719f) + 0.7f;</div><div class="line">        else if (t &lt; 0.9644f) return bounce(t - 0.8526f) + 0.9f;</div><div class="line">        else return bounce(t - 1.0435f) + 0.95f;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看出，这是一个分段函数，分为四段[0, 0.3535f]、[0.3535f, 0.7408f]、[0.7408f, 0.9644f]、[0.9644f,1f]。剩下就是利用高中数学的知识解出这个方程。动画做到最后其实就是数学。</p>
+<blockquote>
+<p>更多原生的Interpolator曲线解析<a href="http://blog.csdn.net/wzg_1987/article/details/8989686" target="_blank" rel="external">点此文章</a></p>
+</blockquote>
+<h2 id="自定义GuillotineInterpolator"><a href="#自定义GuillotineInterpolator" class="headerlink" title="自定义GuillotineInterpolator"></a>自定义GuillotineInterpolator</h2><p>模仿BounceInterpolator，我们设计出适合这个场景使用的插值曲线，回弹强度比BounceInterpolator小，有闸刀的负重感：</p>
+<p><img src="http://7xpypn.com1.z0.glb.clouddn.com/image%2Fguillotine-interpolator-custom.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">public class GuillotineInterpolator implements TimeInterpolator &#123;</div><div class="line"></div><div class="line">    public static final float ROTATION_TIME = 0.46667f;</div><div class="line">    public static final float FIRST_BOUNCE_TIME = 0.26666f;</div><div class="line">    public static final float SECOND_BOUNCE_TIME = 0.26667f;</div><div class="line"></div><div class="line"></div><div class="line">    public GuillotineInterpolator() &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public float getInterpolation(float t) &#123;</div><div class="line">        if (t &lt; ROTATION_TIME) return rotation(t);</div><div class="line">        else if (t &lt; ROTATION_TIME + FIRST_BOUNCE_TIME) return firstBounce(t);</div><div class="line">        else return secondBounce(t);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private float rotation(float t) &#123;</div><div class="line">        return 4.592f * t * t;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private float firstBounce(float t) &#123;</div><div class="line">        return 2.5f * t * t - 3f * t + 1.85556f;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private float secondBounce(float t) &#123;</div><div class="line">        return 0.625f * t * t - 1.083f * t + 1.458f;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>定义Interpolator之后，在执行动画的时候设置Interpolator属性即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">TimeInterpolator mInterpolator = new GuillotineInterpolator();</div><div class="line">rotationAnimator.setInterpolator(mInterpolator);</div></pre></td></tr></table></figure>
+<h1 id="实现ActionBar的回弹效果"><a href="#实现ActionBar的回弹效果" class="headerlink" title="实现ActionBar的回弹效果"></a>实现ActionBar的回弹效果</h1><p>同理，设计ActionBar的插值曲线，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class ActionBarInterpolator implements TimeInterpolator &#123;</div><div class="line"></div><div class="line">    private static final float FIRST_BOUNCE_PART = 0.375f;</div><div class="line">    private static final float SECOND_BOUNCE_PART = 0.625f;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public float getInterpolation(float t) &#123;</div><div class="line">        if (t &lt; FIRST_BOUNCE_PART) &#123;</div><div class="line">            return (-28.4444f) * t * t + 10.66667f * t;</div><div class="line">        &#125; else if (t &lt; SECOND_BOUNCE_PART) &#123;</div><div class="line">            return (21.33312f) * t * t - 21.33312f * t + 4.999950f;</div><div class="line">        &#125; else &#123;</div><div class="line">            return (-9.481481f) * t * t + 15.40741f * t - 5.925926f;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="插值效果预览"><a href="#插值效果预览" class="headerlink" title="插值效果预览"></a>插值效果预览</h1><p>想看到设计的插值公式的动画效果，可以到这个网站 <a href="http://inloop.github.io/interpolator/" target="_blank" rel="external">http://inloop.github.io/interpolator/</a> 预览。并且内置了很多现成的插值器公式。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/动画/" rel="tag">#动画</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/02/10/performance-optimize/" rel="next" title="Google官方Android性能优化专题">
+                <i class="fa fa-chevron-left"></i> Google官方Android性能优化专题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/31/memory-optimize/" rel="prev" title="Android内存优化操作">
+                Android内存优化操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/06/20/yalantis-guillotine-menu/"
+           data-title="Yalantis动画解析之闸刀菜单" data-url="http://willyan.me/2015/06/20/yalantis-guillotine-menu/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xpypn.com1.z0.glb.clouddn.com/image/will.jpg"
+               alt="WillYan" />
+          <p class="site-author-name" itemprop="name">WillYan</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分解设计图"><span class="nav-number">1.</span> <span class="nav-text">分解设计图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现菜单View的旋转"><span class="nav-number">2.</span> <span class="nav-text">实现菜单View的旋转</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BounceInterpolator"><span class="nav-number">2.1.</span> <span class="nav-text">BounceInterpolator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义GuillotineInterpolator"><span class="nav-number">2.2.</span> <span class="nav-text">自定义GuillotineInterpolator</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现ActionBar的回弹效果"><span class="nav-number">3.</span> <span class="nav-text">实现ActionBar的回弹效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插值效果预览"><span class="nav-number">4.</span> <span class="nav-text">插值效果预览</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WillYan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"willyan"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
